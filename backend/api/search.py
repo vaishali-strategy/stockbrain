@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from ..data import market, news, overview, search
+from ..data import fundamentals, market, news, overview, search, shareholding
 
 router = APIRouter(tags=["search"])
 
@@ -31,4 +31,17 @@ def stock_profile(ticker: str, period: str = "3mo") -> dict:
         "chart": {"period": period, "ohlcv": market.get_history(ticker, period)},
         "has_vault_notes": False,
         "vault_note_count": 0,
+    }
+
+
+@router.get("/stock/{ticker}/fundamentals")
+def stock_fundamentals(ticker: str) -> dict:
+    """Heavier fundamentals fetched lazily by the StockPage after the fast profile loads:
+    quarterly results trend (yfinance), key ratios (yfinance), shareholding (screener.in).
+    """
+    return {
+        "ticker": ticker,
+        "quarterly": fundamentals.get_quarterly_results(ticker),
+        "ratios": fundamentals.get_key_ratios(ticker),
+        "shareholding": shareholding.get_shareholding(ticker),
     }
