@@ -1,0 +1,3026 @@
+[
+  {
+    "ticker": "360ONE.NS",
+    "name": "360 ONE WAM Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "3MINDIA.NS",
+    "name": "3M India Ltd.",
+    "sector": "Diversified",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ABB.NS",
+    "name": "ABB India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ACC.NS",
+    "name": "ACC Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ACMESOLAR.NS",
+    "name": "ACME Solar Holdings Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AIAENG.NS",
+    "name": "AIA Engineering Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "APLAPOLLO.NS",
+    "name": "APL Apollo Tubes Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AUBANK.NS",
+    "name": "AU Small Finance Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AWL.NS",
+    "name": "AWL Agri Business Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AADHARHFC.NS",
+    "name": "Aadhar Housing Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AARTIIND.NS",
+    "name": "Aarti Industries Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AAVAS.NS",
+    "name": "Aavas Financiers Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ABBOTINDIA.NS",
+    "name": "Abbott India Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ACE.NS",
+    "name": "Action Construction Equipment Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ACUTAAS.NS",
+    "name": "Acutaas Chemicals Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ADANIENSOL.NS",
+    "name": "Adani Energy Solutions Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ADANIENT.NS",
+    "name": "Adani Enterprises Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ADANIGREEN.NS",
+    "name": "Adani Green Energy Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ADANIPORTS.NS",
+    "name": "Adani Ports and Special Economic Zone Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ADANIPOWER.NS",
+    "name": "Adani Power Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ATGL.NS",
+    "name": "Adani Total Gas Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ABCAPITAL.NS",
+    "name": "Aditya Birla Capital Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ABFRL.NS",
+    "name": "Aditya Birla Fashion and Retail Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ABLBL.NS",
+    "name": "Aditya Birla Lifestyle Brands Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ABREL.NS",
+    "name": "Aditya Birla Real Estate Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ABSLAMC.NS",
+    "name": "Aditya Birla Sun Life AMC Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CPPLUS.NS",
+    "name": "Aditya Infotech Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AEGISLOG.NS",
+    "name": "Aegis Logistics Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AEGISVOPAK.NS",
+    "name": "Aegis Vopak Terminals Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AFCONS.NS",
+    "name": "Afcons Infrastructure Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AFFLE.NS",
+    "name": "Affle 3i Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AJANTPHARM.NS",
+    "name": "Ajanta Pharmaceuticals Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ALKEM.NS",
+    "name": "Alkem Laboratories Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ABDL.NS",
+    "name": "Allied Blenders and Distillers Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ARE&M.NS",
+    "name": "Amara Raja Energy & Mobility Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AMBER.NS",
+    "name": "Amber Enterprises India Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AMBUJACEM.NS",
+    "name": "Ambuja Cements Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ANANDRATHI.NS",
+    "name": "Anand Rathi Wealth Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ANANTRAJ.NS",
+    "name": "Anant Raj Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ANGELONE.NS",
+    "name": "Angel One Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ANTHEM.NS",
+    "name": "Anthem Biosciences Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ANURAS.NS",
+    "name": "Anupam Rasayan India Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "APARINDS.NS",
+    "name": "Apar Industries Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "APOLLOHOSP.NS",
+    "name": "Apollo Hospitals Enterprise Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "APOLLOTYRE.NS",
+    "name": "Apollo Tyres Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "APTUS.NS",
+    "name": "Aptus Value Housing Finance India Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ASAHIINDIA.NS",
+    "name": "Asahi India Glass Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ASHOKLEY.NS",
+    "name": "Ashok Leyland Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ASIANPAINT.NS",
+    "name": "Asian Paints Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ASTERDM.NS",
+    "name": "Aster DM Healthcare Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ASTRAL.NS",
+    "name": "Astral Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ATHERENERG.NS",
+    "name": "Ather Energy Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ATUL.NS",
+    "name": "Atul Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AUROPHARMA.NS",
+    "name": "Aurobindo Pharma Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AIIL.NS",
+    "name": "Authum Investment & Infrastructure Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DMART.NS",
+    "name": "Avenue Supermarts Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "AXISBANK.NS",
+    "name": "Axis Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BEML.NS",
+    "name": "BEML Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BLS.NS",
+    "name": "BLS International Services Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BSE.NS",
+    "name": "BSE Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BAJAJ-AUTO.NS",
+    "name": "Bajaj Auto Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BAJFINANCE.NS",
+    "name": "Bajaj Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BAJAJFINSV.NS",
+    "name": "Bajaj Finserv Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BAJAJHLDNG.NS",
+    "name": "Bajaj Holdings & Investment Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BAJAJHFL.NS",
+    "name": "Bajaj Housing Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BALKRISIND.NS",
+    "name": "Balkrishna Industries Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BALRAMCHIN.NS",
+    "name": "Balrampur Chini Mills Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BANDHANBNK.NS",
+    "name": "Bandhan Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BANKBARODA.NS",
+    "name": "Bank of Baroda",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BANKINDIA.NS",
+    "name": "Bank of India",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MAHABANK.NS",
+    "name": "Bank of Maharashtra",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BATAINDIA.NS",
+    "name": "Bata India Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BAYERCROP.NS",
+    "name": "Bayer Cropscience Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BELRISE.NS",
+    "name": "Belrise Industries Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BERGEPAINT.NS",
+    "name": "Berger Paints India Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BDL.NS",
+    "name": "Bharat Dynamics Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BEL.NS",
+    "name": "Bharat Electronics Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BHARATFORG.NS",
+    "name": "Bharat Forge Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BHEL.NS",
+    "name": "Bharat Heavy Electricals Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BPCL.NS",
+    "name": "Bharat Petroleum Corporation Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BHARTIARTL.NS",
+    "name": "Bharti Airtel Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BHARTIHEXA.NS",
+    "name": "Bharti Hexacom Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BIKAJI.NS",
+    "name": "Bikaji Foods International Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GROWW.NS",
+    "name": "Billionbrains Garage Ventures Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BIOCON.NS",
+    "name": "Biocon Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BSOFT.NS",
+    "name": "Birlasoft Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BLUEDART.NS",
+    "name": "Blue Dart Express Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BLUEJET.NS",
+    "name": "Blue Jet Healthcare Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BLUESTARCO.NS",
+    "name": "Blue Star Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BBTC.NS",
+    "name": "Bombay Burmah Trading Corporation Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BOSCHLTD.NS",
+    "name": "Bosch Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "FIRSTCRY.NS",
+    "name": "Brainbees Solutions Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BRIGADE.NS",
+    "name": "Brigade Enterprises Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "BRITANNIA.NS",
+    "name": "Britannia Industries Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MAPMYINDIA.NS",
+    "name": "C.E. Info Systems Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CCL.NS",
+    "name": "CCL Products (I) Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CESC.NS",
+    "name": "CESC Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CGPOWER.NS",
+    "name": "CG Power and Industrial Solutions Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CIEINDIA.NS",
+    "name": "CIE Automotive India Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CRISIL.NS",
+    "name": "CRISIL Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CANFINHOME.NS",
+    "name": "Can Fin Homes Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CANBK.NS",
+    "name": "Canara Bank",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CANHLIFE.NS",
+    "name": "Canara HSBC Life Insurance Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CAPLIPOINT.NS",
+    "name": "Caplin Point Laboratories Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CGCL.NS",
+    "name": "Capri Global Capital Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CARBORUNIV.NS",
+    "name": "Carborundum Universal Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CARTRADE.NS",
+    "name": "Cartrade Tech Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CASTROLIND.NS",
+    "name": "Castrol India Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CEATLTD.NS",
+    "name": "Ceat Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CEMPRO.NS",
+    "name": "Cemindia Projects Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CENTRALBK.NS",
+    "name": "Central Bank of India",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CDSL.NS",
+    "name": "Central Depository Services (India) Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CHALET.NS",
+    "name": "Chalet Hotels Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CHAMBLFERT.NS",
+    "name": "Chambal Fertilizers & Chemicals Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CHENNPETRO.NS",
+    "name": "Chennai Petroleum Corporation Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CHOICEIN.NS",
+    "name": "Choice International Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CHOLAHLDNG.NS",
+    "name": "Cholamandalam Financial Holdings Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CHOLAFIN.NS",
+    "name": "Cholamandalam Investment and Finance Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CIPLA.NS",
+    "name": "Cipla Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CUB.NS",
+    "name": "City Union Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CLEAN.NS",
+    "name": "Clean Science and Technology Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "COALINDIA.NS",
+    "name": "Coal India Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "COCHINSHIP.NS",
+    "name": "Cochin Shipyard Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "COFORGE.NS",
+    "name": "Coforge Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "COHANCE.NS",
+    "name": "Cohance Lifesciences Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "COLPAL.NS",
+    "name": "Colgate Palmolive (India) Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CAMS.NS",
+    "name": "Computer Age Management Services Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CONCORDBIO.NS",
+    "name": "Concord Biotech Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CONCOR.NS",
+    "name": "Container Corporation of India Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "COROMANDEL.NS",
+    "name": "Coromandel International Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CRAFTSMAN.NS",
+    "name": "Craftsman Automation Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CREDITACC.NS",
+    "name": "CreditAccess Grameen Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CROMPTON.NS",
+    "name": "Crompton Greaves Consumer Electricals Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CUMMINSIND.NS",
+    "name": "Cummins India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "CYIENT.NS",
+    "name": "Cyient Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DCMSHRIRAM.NS",
+    "name": "DCM Shriram Ltd.",
+    "sector": "Diversified",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DLF.NS",
+    "name": "DLF Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DOMS.NS",
+    "name": "DOMS Industries Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DABUR.NS",
+    "name": "Dabur India Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DALBHARAT.NS",
+    "name": "Dalmia Bharat Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DATAPATTNS.NS",
+    "name": "Data Patterns (India) Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DEEPAKFERT.NS",
+    "name": "Deepak Fertilisers & Petrochemicals Corp. Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DEEPAKNTR.NS",
+    "name": "Deepak Nitrite Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DELHIVERY.NS",
+    "name": "Delhivery Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DEVYANI.NS",
+    "name": "Devyani International Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DIVISLAB.NS",
+    "name": "Divi's Laboratories Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DIXON.NS",
+    "name": "Dixon Technologies (India) Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LALPATHLAB.NS",
+    "name": "Dr. Lal Path Labs Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DRREDDY.NS",
+    "name": "Dr. Reddy's Laboratories Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DUMMYVEDL1.NS",
+    "name": "Dummy Vedanta Ltd. 1",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DUMMYVEDL2.NS",
+    "name": "Dummy Vedanta Ltd. 2",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DUMMYVEDL3.NS",
+    "name": "Dummy Vedanta Ltd. 3",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "DUMMYVEDL4.NS",
+    "name": "Dummy Vedanta Ltd. 4",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "EIDPARRY.NS",
+    "name": "E.I.D. Parry (India) Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "EIHOTEL.NS",
+    "name": "EIH Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "EICHERMOT.NS",
+    "name": "Eicher Motors Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ELECON.NS",
+    "name": "Elecon Engineering Co. Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ELGIEQUIP.NS",
+    "name": "Elgi Equipments Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "EMAMILTD.NS",
+    "name": "Emami Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "EMCURE.NS",
+    "name": "Emcure Pharmaceuticals Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "EMMVEE.NS",
+    "name": "Emmvee Photovoltaic Power Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ENDURANCE.NS",
+    "name": "Endurance Technologies Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ENGINERSIN.NS",
+    "name": "Engineers India Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ERIS.NS",
+    "name": "Eris Lifesciences Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ESCORTS.NS",
+    "name": "Escorts Kubota Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ETERNAL.NS",
+    "name": "Eternal Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "EXIDEIND.NS",
+    "name": "Exide Industries Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NYKAA.NS",
+    "name": "FSN E-Commerce Ventures Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "FEDERALBNK.NS",
+    "name": "Federal Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "FACT.NS",
+    "name": "Fertilisers and Chemicals Travancore Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "FINCABLES.NS",
+    "name": "Finolex Cables Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "FSL.NS",
+    "name": "Firstsource Solutions Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "FIVESTAR.NS",
+    "name": "Five-Star Business Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "FORCEMOT.NS",
+    "name": "Force Motors Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "FORTIS.NS",
+    "name": "Fortis Healthcare Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GAIL.NS",
+    "name": "GAIL (India) Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GVT&D.NS",
+    "name": "GE Vernova T&D India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GMRAIRPORT.NS",
+    "name": "GMR Airports Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GABRIEL.NS",
+    "name": "Gabriel India Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GALLANTT.NS",
+    "name": "Gallantt Ispat Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GRSE.NS",
+    "name": "Garden Reach Shipbuilders & Engineers Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GICRE.NS",
+    "name": "General Insurance Corporation of India",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GILLETTE.NS",
+    "name": "Gillette India Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GLAND.NS",
+    "name": "Gland Pharma Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GLAXO.NS",
+    "name": "Glaxosmithkline Pharmaceuticals Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GLENMARK.NS",
+    "name": "Glenmark Pharmaceuticals Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MEDANTA.NS",
+    "name": "Global Health Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GODIGIT.NS",
+    "name": "Go Digit General Insurance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GPIL.NS",
+    "name": "Godawari Power & Ispat Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GODFRYPHLP.NS",
+    "name": "Godfrey Phillips India Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GODREJCP.NS",
+    "name": "Godrej Consumer Products Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GODREJIND.NS",
+    "name": "Godrej Industries Ltd.",
+    "sector": "Diversified",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GODREJPROP.NS",
+    "name": "Godrej Properties Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GRANULES.NS",
+    "name": "Granules India Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GRAPHITE.NS",
+    "name": "Graphite India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GRASIM.NS",
+    "name": "Grasim Industries Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GRAVITA.NS",
+    "name": "Gravita India Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GESHIP.NS",
+    "name": "Great Eastern Shipping Co. Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "FLUOROCHEM.NS",
+    "name": "Gujarat Fluorochemicals Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "GMDCLTD.NS",
+    "name": "Gujarat Mineral Development Corporation Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HEG.NS",
+    "name": "H.E.G. Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HBLENGINE.NS",
+    "name": "HBL Engineering Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HCLTECH.NS",
+    "name": "HCL Technologies Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HDBFS.NS",
+    "name": "HDB Financial Services Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HDFCAMC.NS",
+    "name": "HDFC Asset Management Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HDFCBANK.NS",
+    "name": "HDFC Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HDFCLIFE.NS",
+    "name": "HDFC Life Insurance Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HFCL.NS",
+    "name": "HFCL Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HAVELLS.NS",
+    "name": "Havells India Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HEROMOTOCO.NS",
+    "name": "Hero MotoCorp Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HEXT.NS",
+    "name": "Hexaware Technologies Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HSCL.NS",
+    "name": "Himadri Speciality Chemical Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HINDALCO.NS",
+    "name": "Hindalco Industries Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HAL.NS",
+    "name": "Hindustan Aeronautics Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HINDCOPPER.NS",
+    "name": "Hindustan Copper Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HINDPETRO.NS",
+    "name": "Hindustan Petroleum Corporation Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HINDUNILVR.NS",
+    "name": "Hindustan Unilever Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HINDZINC.NS",
+    "name": "Hindustan Zinc Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "POWERINDIA.NS",
+    "name": "Hitachi Energy India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HOMEFIRST.NS",
+    "name": "Home First Finance Company India Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HONASA.NS",
+    "name": "Honasa Consumer Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HONAUT.NS",
+    "name": "Honeywell Automation India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HUDCO.NS",
+    "name": "Housing & Urban Development Corporation Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "HYUNDAI.NS",
+    "name": "Hyundai Motor India Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ICICIBANK.NS",
+    "name": "ICICI Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ICICIGI.NS",
+    "name": "ICICI Lombard General Insurance Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ICICIAMC.NS",
+    "name": "ICICI Prudential Asset Management Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ICICIPRULI.NS",
+    "name": "ICICI Prudential Life Insurance Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IDBI.NS",
+    "name": "IDBI Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IDFCFIRSTB.NS",
+    "name": "IDFC First Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IFCI.NS",
+    "name": "IFCI Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IIFL.NS",
+    "name": "IIFL Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IRB.NS",
+    "name": "IRB Infrastructure Developers Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IRCON.NS",
+    "name": "IRCON International Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ITCHOTELS.NS",
+    "name": "ITC Hotels Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ITC.NS",
+    "name": "ITC Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ITI.NS",
+    "name": "ITI Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INDGN.NS",
+    "name": "Indegene Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INDIACEM.NS",
+    "name": "India Cements Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INDIAMART.NS",
+    "name": "Indiamart Intermesh Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INDIANB.NS",
+    "name": "Indian Bank",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IEX.NS",
+    "name": "Indian Energy Exchange Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INDHOTEL.NS",
+    "name": "Indian Hotels Co. Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IOC.NS",
+    "name": "Indian Oil Corporation Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IOB.NS",
+    "name": "Indian Overseas Bank",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IRCTC.NS",
+    "name": "Indian Railway Catering And Tourism Corporation Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IRFC.NS",
+    "name": "Indian Railway Finance Corporation Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IREDA.NS",
+    "name": "Indian Renewable Energy Development Agency Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IGL.NS",
+    "name": "Indraprastha Gas Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INDUSTOWER.NS",
+    "name": "Indus Towers Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INDUSINDBK.NS",
+    "name": "IndusInd Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NAUKRI.NS",
+    "name": "Info Edge (India) Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INFY.NS",
+    "name": "Infosys Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INOXWIND.NS",
+    "name": "Inox Wind Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INTELLECT.NS",
+    "name": "Intellect Design Arena Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "INDIGO.NS",
+    "name": "InterGlobe Aviation Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IGIL.NS",
+    "name": "International Gemological Institute Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IKS.NS",
+    "name": "Inventurus Knowledge Solutions Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IPCALAB.NS",
+    "name": "Ipca Laboratories Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JBCHEPHARM.NS",
+    "name": "J.B. Chemicals & Pharmaceuticals Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JKCEMENT.NS",
+    "name": "J.K. Cement Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JBMA.NS",
+    "name": "JBM Auto Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JKTYRE.NS",
+    "name": "JK Tyre & Industries Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JMFINANCIL.NS",
+    "name": "JM Financial Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JSWCEMENT.NS",
+    "name": "JSW Cement Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JSWDULUX.NS",
+    "name": "JSW Dulux Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JSWENERGY.NS",
+    "name": "JSW Energy Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JSWINFRA.NS",
+    "name": "JSW Infrastructure Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JSWSTEEL.NS",
+    "name": "JSW Steel Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JAINREC.NS",
+    "name": "Jain Resource Recycling Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JPPOWER.NS",
+    "name": "Jaiprakash Power Ventures Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "J&KBANK.NS",
+    "name": "Jammu & Kashmir Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JINDALSAW.NS",
+    "name": "Jindal Saw Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JSL.NS",
+    "name": "Jindal Stainless Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JINDALSTEL.NS",
+    "name": "Jindal Steel Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JIOFIN.NS",
+    "name": "Jio Financial Services Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JUBLFOOD.NS",
+    "name": "Jubilant Foodworks Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JUBLINGREA.NS",
+    "name": "Jubilant Ingrevia Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JUBLPHARMA.NS",
+    "name": "Jubilant Pharmova Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JWL.NS",
+    "name": "Jupiter Wagons Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "JYOTICNC.NS",
+    "name": "Jyoti CNC Automation Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KPRMILL.NS",
+    "name": "K.P.R. Mill Ltd.",
+    "sector": "Textiles",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KEI.NS",
+    "name": "KEI Industries Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KPITTECH.NS",
+    "name": "KPIT Technologies Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KAJARIACER.NS",
+    "name": "Kajaria Ceramics Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KPIL.NS",
+    "name": "Kalpataru Projects International Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KALYANKJIL.NS",
+    "name": "Kalyan Jewellers India Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KARURVYSYA.NS",
+    "name": "Karur Vysya Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KAYNES.NS",
+    "name": "Kaynes Technology India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KEC.NS",
+    "name": "Kec International Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KFINTECH.NS",
+    "name": "Kfin Technologies Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KIRLOSENG.NS",
+    "name": "Kirloskar Oil Eng Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KOTAKBANK.NS",
+    "name": "Kotak Mahindra Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "KIMS.NS",
+    "name": "Krishna Institute of Medical Sciences Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LTF.NS",
+    "name": "L&T Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LTTS.NS",
+    "name": "L&T Technology Services Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LGEINDIA.NS",
+    "name": "LG Electronics India Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LICHSGFIN.NS",
+    "name": "LIC Housing Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LTFOODS.NS",
+    "name": "LT Foods Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LTM.NS",
+    "name": "LTM Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LT.NS",
+    "name": "Larsen & Toubro Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LATENTVIEW.NS",
+    "name": "Latent View Analytics Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LAURUSLABS.NS",
+    "name": "Laurus Labs Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "THELEELA.NS",
+    "name": "Leela Palaces Hotels & Resorts Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LEMONTREE.NS",
+    "name": "Lemon Tree Hotels Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LENSKART.NS",
+    "name": "Lenskart Solutions Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LICI.NS",
+    "name": "Life Insurance Corporation of India",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LINDEINDIA.NS",
+    "name": "Linde India Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LLOYDSME.NS",
+    "name": "Lloyds Metals And Energy Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LODHA.NS",
+    "name": "Lodha Developers Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "LUPIN.NS",
+    "name": "Lupin Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MMTC.NS",
+    "name": "MMTC Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MRF.NS",
+    "name": "MRF Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MGL.NS",
+    "name": "Mahanagar Gas Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "M&MFIN.NS",
+    "name": "Mahindra & Mahindra Financial Services Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "M&M.NS",
+    "name": "Mahindra & Mahindra Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MANAPPURAM.NS",
+    "name": "Manappuram Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MRPL.NS",
+    "name": "Mangalore Refinery & Petrochemicals Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MANKIND.NS",
+    "name": "Mankind Pharma Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MARICO.NS",
+    "name": "Marico Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MARUTI.NS",
+    "name": "Maruti Suzuki India Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MFSL.NS",
+    "name": "Max Financial Services Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MAXHEALTH.NS",
+    "name": "Max Healthcare Institute Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MAZDOCK.NS",
+    "name": "Mazagoan Dock Shipbuilders Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MEESHO.NS",
+    "name": "Meesho Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MINDACORP.NS",
+    "name": "Minda Corporation Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MSUMI.NS",
+    "name": "Motherson Sumi Wiring India Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MOTILALOFS.NS",
+    "name": "Motilal Oswal Financial Services Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MPHASIS.NS",
+    "name": "MphasiS Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MCX.NS",
+    "name": "Multi Commodity Exchange of India Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MUTHOOTFIN.NS",
+    "name": "Muthoot Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NATCOPHARM.NS",
+    "name": "NATCO Pharma Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NBCC.NS",
+    "name": "NBCC (India) Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NCC.NS",
+    "name": "NCC Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NHPC.NS",
+    "name": "NHPC Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NLCINDIA.NS",
+    "name": "NLC India Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NMDC.NS",
+    "name": "NMDC Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NSLNISP.NS",
+    "name": "NMDC Steel Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NTPCGREEN.NS",
+    "name": "NTPC Green Energy Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NTPC.NS",
+    "name": "NTPC Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NH.NS",
+    "name": "Narayana Hrudayalaya Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NATIONALUM.NS",
+    "name": "National Aluminium Co. Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NAVA.NS",
+    "name": "Nava Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NAVINFLUOR.NS",
+    "name": "Navin Fluorine International Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NESTLEIND.NS",
+    "name": "Nestle India Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NETWEB.NS",
+    "name": "Netweb Technologies India Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NEULANDLAB.NS",
+    "name": "Neuland Laboratories Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NEWGEN.NS",
+    "name": "Newgen Software Technologies Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NAM-INDIA.NS",
+    "name": "Nippon Life India Asset Management Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NIVABUPA.NS",
+    "name": "Niva Bupa Health Insurance Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NUVAMA.NS",
+    "name": "Nuvama Wealth Management Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NUVOCO.NS",
+    "name": "Nuvoco Vistas Corporation Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "OBEROIRLTY.NS",
+    "name": "Oberoi Realty Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ONGC.NS",
+    "name": "Oil & Natural Gas Corporation Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "OIL.NS",
+    "name": "Oil India Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "OLAELEC.NS",
+    "name": "Ola Electric Mobility Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "OLECTRA.NS",
+    "name": "Olectra Greentech Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PAYTM.NS",
+    "name": "One 97 Communications Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ONESOURCE.NS",
+    "name": "Onesource Specialty Pharma Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "OFSS.NS",
+    "name": "Oracle Financial Services Software Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "POLICYBZR.NS",
+    "name": "PB Fintech Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PCBL.NS",
+    "name": "PCBL Chemical Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PGEL.NS",
+    "name": "PG Electroplast Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PIIND.NS",
+    "name": "PI Industries Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PNBHOUSING.NS",
+    "name": "PNB Housing Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PTCIL.NS",
+    "name": "PTC Industries Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PVRINOX.NS",
+    "name": "PVR INOX Ltd.",
+    "sector": "Media Entertainment & Publication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PAGEIND.NS",
+    "name": "Page Industries Ltd.",
+    "sector": "Textiles",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PARADEEP.NS",
+    "name": "Paradeep Phosphates Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PATANJALI.NS",
+    "name": "Patanjali Foods Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PERSISTENT.NS",
+    "name": "Persistent Systems Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PETRONET.NS",
+    "name": "Petronet LNG Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PFIZER.NS",
+    "name": "Pfizer Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PHOENIXLTD.NS",
+    "name": "Phoenix Mills Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PWL.NS",
+    "name": "Physicswallah Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PIDILITIND.NS",
+    "name": "Pidilite Industries Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PINELABS.NS",
+    "name": "Pine Labs Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PIRAMALFIN.NS",
+    "name": "Piramal Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PPLPHARMA.NS",
+    "name": "Piramal Pharma Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "POLYMED.NS",
+    "name": "Poly Medicure Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "POLYCAB.NS",
+    "name": "Polycab India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "POONAWALLA.NS",
+    "name": "Poonawalla Fincorp Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PFC.NS",
+    "name": "Power Finance Corporation Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "POWERGRID.NS",
+    "name": "Power Grid Corporation of India Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PREMIERENE.NS",
+    "name": "Premier Energies Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PRESTIGE.NS",
+    "name": "Prestige Estates Projects Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "PNB.NS",
+    "name": "Punjab National Bank",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RRKABEL.NS",
+    "name": "R R Kabel Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RBLBANK.NS",
+    "name": "RBL Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RECLTD.NS",
+    "name": "REC Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RHIM.NS",
+    "name": "RHI MAGNESITA INDIA LTD.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RITES.NS",
+    "name": "RITES Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RADICO.NS",
+    "name": "Radico Khaitan Ltd",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RVNL.NS",
+    "name": "Rail Vikas Nigam Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RAILTEL.NS",
+    "name": "Railtel Corporation Of India Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RAINBOW.NS",
+    "name": "Rainbow Childrens Medicare Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RKFORGE.NS",
+    "name": "Ramkrishna Forgings Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "REDINGTON.NS",
+    "name": "Redington Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RELIANCE.NS",
+    "name": "Reliance Industries Ltd.",
+    "sector": "Oil Gas & Consumable Fuels",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RPOWER.NS",
+    "name": "Reliance Power Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SBFC.NS",
+    "name": "SBFC Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SBICARD.NS",
+    "name": "SBI Cards and Payment Services Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SBILIFE.NS",
+    "name": "SBI Life Insurance Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SJVN.NS",
+    "name": "SJVN Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SRF.NS",
+    "name": "SRF Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SAGILITY.NS",
+    "name": "Sagility Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SAILIFE.NS",
+    "name": "Sai Life Sciences Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SAMMAANCAP.NS",
+    "name": "Sammaan Capital Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "MOTHERSON.NS",
+    "name": "Samvardhana Motherson International Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SAPPHIRE.NS",
+    "name": "Sapphire Foods India Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SARDAEN.NS",
+    "name": "Sarda Energy and Minerals Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SAREGAMA.NS",
+    "name": "Saregama India Ltd",
+    "sector": "Media Entertainment & Publication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SCHAEFFLER.NS",
+    "name": "Schaeffler India Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SCHNEIDER.NS",
+    "name": "Schneider Electric Infrastructure Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SCI.NS",
+    "name": "Shipping Corporation of India Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SHREECEM.NS",
+    "name": "Shree Cement Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SHRIRAMFIN.NS",
+    "name": "Shriram Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SHYAMMETL.NS",
+    "name": "Shyam Metalics and Energy Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ENRIN.NS",
+    "name": "Siemens Energy India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SIEMENS.NS",
+    "name": "Siemens Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SIGNATURE.NS",
+    "name": "Signatureglobal (India) Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SOBHA.NS",
+    "name": "Sobha Ltd.",
+    "sector": "Realty",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SOLARINDS.NS",
+    "name": "Solar Industries India Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SONACOMS.NS",
+    "name": "Sona BLW Precision Forgings Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SONATSOFTW.NS",
+    "name": "Sonata Software Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "STARHEALTH.NS",
+    "name": "Star Health and Allied Insurance Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SBIN.NS",
+    "name": "State Bank of India",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SAIL.NS",
+    "name": "Steel Authority of India Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SUMICHEM.NS",
+    "name": "Sumitomo Chemical India Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SUNPHARMA.NS",
+    "name": "Sun Pharmaceutical Industries Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SUNTV.NS",
+    "name": "Sun TV Network Ltd.",
+    "sector": "Media Entertainment & Publication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SUNDARMFIN.NS",
+    "name": "Sundaram Finance Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SUPREMEIND.NS",
+    "name": "Supreme Industries Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SPLPETRO.NS",
+    "name": "Supreme Petrochem Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SUZLON.NS",
+    "name": "Suzlon Energy Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SWANCORP.NS",
+    "name": "Swan Corp Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SWIGGY.NS",
+    "name": "Swiggy Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SYNGENE.NS",
+    "name": "Syngene International Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "SYRMA.NS",
+    "name": "Syrma SGS Technology Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TBOTEK.NS",
+    "name": "TBO Tek Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TVSMOTOR.NS",
+    "name": "TVS Motor Company Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TATACAP.NS",
+    "name": "Tata Capital Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TATACHEM.NS",
+    "name": "Tata Chemicals Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TATACOMM.NS",
+    "name": "Tata Communications Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TCS.NS",
+    "name": "Tata Consultancy Services Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TATACONSUM.NS",
+    "name": "Tata Consumer Products Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TATAELXSI.NS",
+    "name": "Tata Elxsi Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TATAINVEST.NS",
+    "name": "Tata Investment Corporation Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TMCV.NS",
+    "name": "Tata Motors Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TMPV.NS",
+    "name": "Tata Motors Passenger Vehicles Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TATAPOWER.NS",
+    "name": "Tata Power Co. Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TATASTEEL.NS",
+    "name": "Tata Steel Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TATATECH.NS",
+    "name": "Tata Technologies Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TTML.NS",
+    "name": "Tata Teleservices (Maharashtra) Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TECHM.NS",
+    "name": "Tech Mahindra Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TECHNOE.NS",
+    "name": "Techno Electric & Engineering Company Ltd.",
+    "sector": "Construction",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TEGA.NS",
+    "name": "Tega Industries Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TEJASNET.NS",
+    "name": "Tejas Networks Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TENNIND.NS",
+    "name": "Tenneco Clean Air India Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "NIACL.NS",
+    "name": "The New India Assurance Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "RAMCOCEM.NS",
+    "name": "The Ramco Cements Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "THERMAX.NS",
+    "name": "Thermax Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TIMKEN.NS",
+    "name": "Timken India Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TITAGARH.NS",
+    "name": "Titagarh Rail Systems Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TITAN.NS",
+    "name": "Titan Company Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TORNTPHARM.NS",
+    "name": "Torrent Pharmaceuticals Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TORNTPOWER.NS",
+    "name": "Torrent Power Ltd.",
+    "sector": "Power",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TARIL.NS",
+    "name": "Transformers And Rectifiers (India) Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TRAVELFOOD.NS",
+    "name": "Travel Food Services Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TRENT.NS",
+    "name": "Trent Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TRIDENT.NS",
+    "name": "Trident Ltd.",
+    "sector": "Textiles",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TRITURBINE.NS",
+    "name": "Triveni Turbine Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "TIINDIA.NS",
+    "name": "Tube Investments of India Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "UCOBANK.NS",
+    "name": "UCO Bank",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "UNOMINDA.NS",
+    "name": "UNO Minda Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "UPL.NS",
+    "name": "UPL Ltd.",
+    "sector": "Chemicals",
+    "series": "EQ"
+  },
+  {
+    "ticker": "UTIAMC.NS",
+    "name": "UTI Asset Management Company Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ULTRACEMCO.NS",
+    "name": "UltraTech Cement Ltd.",
+    "sector": "Construction Materials",
+    "series": "EQ"
+  },
+  {
+    "ticker": "UNIONBANK.NS",
+    "name": "Union Bank of India",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "UBL.NS",
+    "name": "United Breweries Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "UNITDSPR.NS",
+    "name": "United Spirits Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "URBANCO.NS",
+    "name": "Urban Company Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "USHAMART.NS",
+    "name": "Usha Martin Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "VTL.NS",
+    "name": "Vardhman Textiles Ltd.",
+    "sector": "Textiles",
+    "series": "EQ"
+  },
+  {
+    "ticker": "VBL.NS",
+    "name": "Varun Beverages Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "VEDL.NS",
+    "name": "Vedanta Ltd.",
+    "sector": "Metals & Mining",
+    "series": "EQ"
+  },
+  {
+    "ticker": "VIJAYA.NS",
+    "name": "Vijaya Diagnostic Centre Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "VMM.NS",
+    "name": "Vishal Mega Mart Ltd.",
+    "sector": "Consumer Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "IDEA.NS",
+    "name": "Vodafone Idea Ltd.",
+    "sector": "Telecommunication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "VOLTAS.NS",
+    "name": "Voltas Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "WAAREEENER.NS",
+    "name": "Waaree Energies Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "WELCORP.NS",
+    "name": "Welspun Corp Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "WELSPUNLIV.NS",
+    "name": "Welspun Living Ltd.",
+    "sector": "Textiles",
+    "series": "EQ"
+  },
+  {
+    "ticker": "WHIRLPOOL.NS",
+    "name": "Whirlpool of India Ltd.",
+    "sector": "Consumer Durables",
+    "series": "EQ"
+  },
+  {
+    "ticker": "WIPRO.NS",
+    "name": "Wipro Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "WOCKPHARMA.NS",
+    "name": "Wockhardt Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "YESBANK.NS",
+    "name": "Yes Bank Ltd.",
+    "sector": "Financial Services",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ZFCVINDIA.NS",
+    "name": "ZF Commercial Vehicle Control Systems India Ltd.",
+    "sector": "Automobile and Auto Components",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ZEEL.NS",
+    "name": "Zee Entertainment Enterprises Ltd.",
+    "sector": "Media Entertainment & Publication",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ZENTEC.NS",
+    "name": "Zen Technologies Ltd.",
+    "sector": "Capital Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ZENSARTECH.NS",
+    "name": "Zensar Technolgies Ltd.",
+    "sector": "Information Technology",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ZYDUSLIFE.NS",
+    "name": "Zydus Lifesciences Ltd.",
+    "sector": "Healthcare",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ZYDUSWELL.NS",
+    "name": "Zydus Wellness Ltd.",
+    "sector": "Fast Moving Consumer Goods",
+    "series": "EQ"
+  },
+  {
+    "ticker": "ECLERX.NS",
+    "name": "eClerx Services Ltd.",
+    "sector": "Services",
+    "series": "EQ"
+  }
+]
