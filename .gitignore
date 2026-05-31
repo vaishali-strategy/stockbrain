@@ -7,12 +7,8 @@ __pycache__/
 # Secrets
 .env
 
-# Local databases / caches (regenerated at runtime)
-backend/db/chroma/
-backend/db/overviews/
-backend/db/*.json
-backend/db/*.sqlite
-backend/db/*.db
+# Local databases / caches (regenerated at runtime) — ignore everything under db/
+backend/db/
 
 # Node / frontend build
 node_modules/
