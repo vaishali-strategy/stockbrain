@@ -33,6 +33,18 @@ def _load_universe() -> list[dict]:
         return []
 
 
+def company_name(ticker: str) -> str:
+    """Resolve a ticker to its company name from the bundled list (for news queries).
+
+    Falls back to the bare symbol (suffix stripped) when not in the universe.
+    """
+    symbol = ticker.split(".")[0].upper()
+    for row in _load_universe():
+        if row["ticker"].split(".")[0].upper() == symbol:
+            return row.get("name", symbol)
+    return symbol
+
+
 def _exchange_for(ticker: str) -> str:
     if ticker.endswith(".NS"):
         return "NSE"

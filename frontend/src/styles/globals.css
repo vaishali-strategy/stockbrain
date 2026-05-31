@@ -301,6 +301,20 @@ body > #root::before {
   align-items: center;
   gap: 9px;
 }
+.search-symbol {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.3px;
+  color: #d7ccff;
+  background: rgba(141, 92, 255, 0.16);
+  border: 1px solid rgba(141, 92, 255, 0.3);
+  padding: 2px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  min-width: 64px;
+  text-align: center;
+}
 .search-name {
   font-weight: 500;
 }

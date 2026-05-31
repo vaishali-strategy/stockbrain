@@ -3,6 +3,11 @@ import { searchTickers } from "../api.js";
 
 const RECENT_KEY = "stockbrain.recentSearches";
 
+// Display acronym = ticker without the .NS/.BO exchange suffix.
+function symbolOf(ticker) {
+  return ticker.replace(/\.(NS|BO)$/, "");
+}
+
 function loadRecent() {
   try {
     return JSON.parse(localStorage.getItem(RECENT_KEY)) || [];
@@ -98,6 +103,7 @@ export default function SearchBar({ onSelect, autoFocus = false, large = false }
           {results.map((r) => (
             <li key={r.ticker} className="search-item" onMouseDown={() => choose(r)}>
               <div className="search-item-main">
+                <span className="search-symbol">{symbolOf(r.ticker)}</span>
                 <span className="search-name">{r.name}</span>
                 {r.exchange && <span className="badge">{r.exchange}</span>}
               </div>
@@ -113,6 +119,7 @@ export default function SearchBar({ onSelect, autoFocus = false, large = false }
           {recent.map((r) => (
             <li key={r.ticker} className="search-item" onMouseDown={() => choose(r)}>
               <div className="search-item-main">
+                <span className="search-symbol">{symbolOf(r.ticker)}</span>
                 <span className="search-name">{r.name}</span>
                 {r.exchange && <span className="badge">{r.exchange}</span>}
               </div>
