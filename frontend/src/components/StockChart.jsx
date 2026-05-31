@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useId } from "react";
 import {
   ResponsiveContainer,
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   Tooltip,
@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import { getChart, formatRupees } from "../api.js";
 
-// recharts has no native candlestick — we plot the line of closing prices only.
+// recharts has no native candlestick — we plot a glowing gradient area of closing prices.
 const PERIODS = [
   ["1W", "1w"],
   ["1M", "1mo"],
@@ -23,9 +23,9 @@ export default function StockChart({ ticker, initial }) {
   const [period, setPeriod] = useState(initial?.period || "3mo");
   const [ohlcv, setOhlcv] = useState(initial?.ohlcv || []);
   const [loading, setLoading] = useState(false);
+  const uid = useId().replace(/:/g, ""); // unique gradient/filter ids per instance
 
   useEffect(() => {
-    // Use the data already loaded with the page for its period; fetch only on change.
     if (period === initial?.period) {
       setOhlcv(initial.ohlcv || []);
       return;
@@ -33,15 +33,9 @@ export default function StockChart({ ticker, initial }) {
     let cancelled = false;
     setLoading(true);
     getChart(ticker, period)
-      .then((d) => {
-        if (!cancelled) setOhlcv(d.ohlcv || []);
-      })
-      .catch(() => {
-        if (!cancelled) setOhlcv([]);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
+      .then((d) => !cancelled && setOhlcv(d.ohlcv || []))
+      .catch(() => !cancelled && setOhlcv([]))
+      .finally(() => !cancelled && setLoading(false));
     return () => {
       cancelled = true;
     };
@@ -49,7 +43,7 @@ export default function StockChart({ ticker, initial }) {
 
   const closes = ohlcv.map((d) => d.close).filter((c) => c != null);
   const up = closes.length >= 2 ? closes[closes.length - 1] >= closes[0] : true;
-  const color = up ? "var(--pos)" : "var(--neg)";
+  const color = up ? "#2fe6a8" : "#ff6b8b";
 
   return (
     <section className="panel chart-panel">
@@ -73,19 +67,44 @@ export default function StockChart({ ticker, initial }) {
       ) : ohlcv.length === 0 ? (
         <div className="chart-empty">No price data.</div>
       ) : (
-        <ResponsiveContainer width="100%" height={280}>
-          <LineChart data={ohlcv} margin={{ top: 8, right: 8, left: 8, bottom: 0 }}>
-            <CartesianGrid stroke="var(--border)" strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="date" tick={{ fontSize: 11, fill: "var(--text-dim)" }} minTickGap={40} />
+        <ResponsiveContainer width="100%" height={290}>
+          <AreaChart data={ohlcv} margin={{ top: 10, right: 8, left: 8, bottom: 0 }}>
+            <defs>
+              <linearGradient id={`fill-${uid}`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={color} stopOpacity={0.45} />
+                <stop offset="100%" stopColor={color} stopOpacity={0} />
+              </linearGradient>
+              <filter id={`glow-${uid}`} x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <CartesianGrid stroke="rgba(255,255,255,0.06)" strokeDasharray="3 6" vertical={false} />
+            <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#6f6b91" }} minTickGap={42} tickLine={false} axisLine={false} />
             <YAxis
               domain={["auto", "auto"]}
-              tick={{ fontSize: 11, fill: "var(--text-dim)" }}
-              width={64}
+              tick={{ fontSize: 11, fill: "#6f6b91" }}
+              width={62}
+              tickLine={false}
+              axisLine={false}
               tickFormatter={(v) => "₹" + Math.round(v).toLocaleString("en-IN")}
             />
-            <Tooltip content={<ChartTooltip />} />
-            <Line type="monotone" dataKey="close" stroke={color} dot={false} strokeWidth={2} />
-          </LineChart>
+            <Tooltip content={<ChartTooltip />} cursor={{ stroke: "rgba(255,255,255,0.2)" }} />
+            <Area
+              type="monotone"
+              dataKey="close"
+              stroke={color}
+              strokeWidth={2.4}
+              fill={`url(#fill-${uid})`}
+              filter={`url(#glow-${uid})`}
+              isAnimationActive={false}
+              dot={false}
+              activeDot={{ r: 5, fill: color, stroke: "#fff", strokeWidth: 1.5 }}
+            />
+          </AreaChart>
         </ResponsiveContainer>
       )}
     </section>

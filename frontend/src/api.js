@@ -16,6 +16,12 @@ export async function getStock(ticker, period = "3mo") {
   return res.json();
 }
 
+export async function getFundamentals(ticker) {
+  const res = await fetch(`${API}/stock/${encodeURIComponent(ticker)}/fundamentals`);
+  if (!res.ok) throw new Error("fundamentals fetch failed");
+  return res.json();
+}
+
 export async function getQuote(ticker) {
   const res = await fetch(`${API}/quote/${encodeURIComponent(ticker)}`);
   if (!res.ok) throw new Error("quote fetch failed");
