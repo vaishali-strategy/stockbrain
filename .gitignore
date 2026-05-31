@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Secrets
+.env
+
+# Local databases / caches (regenerated at runtime)
+backend/db/chroma/
+backend/db/overviews/
+backend/db/*.json
+backend/db/*.sqlite
+backend/db/*.db
+
+# Node / frontend build
+node_modules/
+dist/
+dist-electron/
+frontend/dist/
+
+# OS
+.DS_Store
