@@ -23,7 +23,9 @@ pyinstaller backend/server.py \
   --collect-submodules uvicorn \
   --copy-metadata chromadb --copy-metadata fastembed --copy-metadata tqdm \
   --copy-metadata opentelemetry-sdk --copy-metadata pyyaml --copy-metadata numpy \
-  --hidden-import anthropic --hidden-import frontmatter --hidden-import curl_cffi
+  --hidden-import anthropic --hidden-import frontmatter --hidden-import curl_cffi \
+  --add-data "backend/data/nifty500_tickers.json:backend/data" \
+  --add-data "backend/data/nifty100_tickers.json:backend/data"
 
 echo "✓ Backend frozen → dist-backend/stockbrain-server/stockbrain-server"
 echo "  (first vault sync downloads the embedding model to your HF cache, ~130MB)"

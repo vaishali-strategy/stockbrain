@@ -18,7 +18,7 @@ import yfinance as yf
 from .. import config
 from .cache import retry_with_backoff
 
-_CACHE_DIR = Path(__file__).resolve().parent.parent / "db" / "overviews"
+_CACHE_DIR = config.DB_DIR / "overviews"
 _CACHE_TTL = timedelta(days=7)
 
 _SYSTEM_PROMPT = (

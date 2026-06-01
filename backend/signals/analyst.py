@@ -17,7 +17,7 @@ from pathlib import Path
 from .. import config
 from . import scorer, screener
 
-_CACHE_PATH = Path(__file__).resolve().parent.parent / "db" / "signals_cache.json"
+_CACHE_PATH = config.DB_DIR / "signals_cache.json"
 _CACHE_TTL = timedelta(hours=4)
 _IST = timezone(timedelta(hours=5, minutes=30))
 

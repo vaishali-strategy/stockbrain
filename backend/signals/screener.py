@@ -12,9 +12,10 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
+from .. import config
 from ..data import cache
 
-_DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+_DATA_DIR = config.bundle_path("backend/data")
 
 
 def _universe_path() -> Path:

@@ -8,6 +8,7 @@ designed to run with no keys at all (data features work; AI features degrade gra
 from __future__ import annotations
 
 import os
+import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -16,13 +17,27 @@ from dotenv import load_dotenv
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(_PROJECT_ROOT / ".env")
 
+# Writable data dir for all caches/DB/config. In the packaged app, Electron sets
+# STOCKBRAIN_DATA_DIR to the OS user-data folder (the app bundle itself is read-only).
+DB_DIR = Path(os.getenv("STOCKBRAIN_DATA_DIR", "").strip() or (_PROJECT_ROOT / "backend" / "db"))
+try:
+    DB_DIR.mkdir(parents=True, exist_ok=True)
+except OSError:
+    pass
+
+
+def bundle_path(rel: str) -> Path:
+    """Locate a bundled resource (e.g. the ticker JSONs): under PyInstaller's _MEIPASS
+    when frozen, else relative to the project root."""
+    return Path(getattr(sys, "_MEIPASS", _PROJECT_ROOT)) / rel
+
 # --- Secrets / optional keys ---
 ANTHROPIC_API_KEY: str = os.getenv("ANTHROPIC_API_KEY", "").strip()
 NEWS_API_KEY: str = os.getenv("NEWS_API_KEY", "").strip()
 
 # --- Paths ---
 VAULT_PATH: str = os.getenv("VAULT_PATH", "").strip()
-CHROMA_PATH: str = os.getenv("CHROMA_PATH", "./backend/db/chroma").strip()
+CHROMA_PATH: str = os.getenv("CHROMA_PATH", "").strip() or str(DB_DIR / "chroma")
 
 # --- Models (defaults match the build brief; override via .env) ---
 EMBED_MODEL: str = os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5").strip()
@@ -47,7 +62,7 @@ def has_anthropic_key() -> bool:
 # Stored in a small JSON so a vault picked at runtime survives restarts without editing .env.
 import json as _json  # noqa: E402
 
-_APP_CONFIG_PATH = _PROJECT_ROOT / "backend" / "db" / "app_config.json"
+_APP_CONFIG_PATH = DB_DIR / "app_config.json"
 
 
 def _read_app_config() -> dict:

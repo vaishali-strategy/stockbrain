@@ -22,7 +22,7 @@ from .. import config
 from . import screener_metrics, shareholding
 from .cache import retry_with_backoff
 
-_NARR_DIR = Path(__file__).resolve().parent.parent / "db" / "quality_narrative"
+_NARR_DIR = config.DB_DIR / "quality_narrative"
 _NARR_TTL = timedelta(days=1)
 
 

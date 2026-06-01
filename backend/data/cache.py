@@ -18,7 +18,9 @@ from typing import Callable, TypeVar
 
 import yfinance as yf
 
-_DB_PATH = Path(__file__).resolve().parent.parent / "db" / "ohlcv_cache.sqlite"
+from .. import config
+
+_DB_PATH = config.DB_DIR / "ohlcv_cache.sqlite"
 
 # A ticker's cached history is considered fresh for this long before we refetch.
 _FRESH_TTL = timedelta(hours=6)

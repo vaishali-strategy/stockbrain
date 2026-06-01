@@ -18,7 +18,9 @@ from bs4 import BeautifulSoup
 
 from .cache import retry_with_backoff
 
-_CACHE_DIR = Path(__file__).resolve().parent.parent / "db" / "screener_metrics"
+from .. import config
+
+_CACHE_DIR = config.DB_DIR / "screener_metrics"
 _CACHE_TTL = timedelta(days=1)
 
 _HEADERS = {

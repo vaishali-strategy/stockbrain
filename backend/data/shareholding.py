@@ -29,8 +29,10 @@ from .cache import retry_with_backoff
 
 logger = logging.getLogger("stockbrain.shareholding")
 
-_CACHE_DIR = Path(__file__).resolve().parent.parent / "db" / "shareholding"
-_DIAG_DIR = Path(__file__).resolve().parent.parent / "db" / "diagnostics"
+from .. import config
+
+_CACHE_DIR = config.DB_DIR / "shareholding"
+_DIAG_DIR = config.DB_DIR / "diagnostics"
 _CACHE_TTL = timedelta(days=1)
 _MAX_QUARTERS = 8
 

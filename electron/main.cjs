@@ -54,7 +54,16 @@ function startBackend() {
     args = ["-m", "uvicorn", "backend.main:app", "--port", String(BACKEND_PORT)];
   }
 
-  backendProc = spawn(cmd, args, { cwd: ROOT, stdio: "inherit", env: { ...process.env, BACKEND_PORT: String(BACKEND_PORT) } });
+  // In the packaged app the bundle is read-only — point the backend at the OS user-data
+  // folder for all its caches/DB/config.
+  const env = { ...process.env, BACKEND_PORT: String(BACKEND_PORT) };
+  let cwd = ROOT;
+  if (app.isPackaged) {
+    const dataDir = app.getPath("userData");
+    env.STOCKBRAIN_DATA_DIR = dataDir;
+    cwd = dataDir;
+  }
+  backendProc = spawn(cmd, args, { cwd, stdio: "inherit", env });
   backendProc.on("error", (err) => console.error("[backend] failed to start:", err));
   backendProc.on("exit", (code) => console.log("[backend] exited", code));
 }

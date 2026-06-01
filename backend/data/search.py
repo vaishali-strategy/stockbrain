@@ -16,9 +16,10 @@ from pathlib import Path
 
 import yfinance as yf
 
+from .. import config
 from .cache import retry_with_backoff
 
-_TICKERS_PATH = Path(__file__).resolve().parent / "nifty500_tickers.json"
+_TICKERS_PATH = config.bundle_path("backend/data/nifty500_tickers.json")
 _MAX_RESULTS = 10
 
 
