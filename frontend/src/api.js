@@ -22,6 +22,24 @@ export async function getFundamentals(ticker) {
   return res.json();
 }
 
+export async function getSignals() {
+  const res = await fetch(`${API}/signals`);
+  if (!res.ok) throw new Error("signals fetch failed");
+  return res.json();
+}
+
+export async function refreshSignals() {
+  const res = await fetch(`${API}/signals/refresh`, { method: "POST" });
+  if (!res.ok) throw new Error("signals refresh failed");
+  return res.json();
+}
+
+export async function getSignalsStatus() {
+  const res = await fetch(`${API}/signals/status`);
+  if (!res.ok) throw new Error("signals status failed");
+  return res.json();
+}
+
 export async function getQuote(ticker) {
   const res = await fetch(`${API}/quote/${encodeURIComponent(ticker)}`);
   if (!res.ok) throw new Error("quote fetch failed");

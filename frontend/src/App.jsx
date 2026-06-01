@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar.jsx";
 import StockPage from "./components/StockPage.jsx";
+import SignalsDashboard from "./components/SignalsDashboard.jsx";
 import { marketStatus } from "./api.js";
 
-// Simple state machine — no router needed for the slice. home <-> stock.
-function tickerFromHash() {
+// Resolve the current view from the URL hash so views are bookmarkable.
+//   #signals        -> signals dashboard
+//   #<TICKER>       -> stock page
+//   (empty)         -> home
+function routeFromHash() {
   const h = decodeURIComponent(window.location.hash.replace(/^#/, "")).trim();
-  return h || null;
+  if (!h) return { view: "home", ticker: null };
+  if (h.toLowerCase() === "signals") return { view: "signals", ticker: null };
+  return { view: "stock", ticker: h };
 }
 
 export default function App() {
-  // Initialize from the URL hash so stock pages are bookmarkable/shareable.
-  const initial = tickerFromHash();
-  const [view, setView] = useState(initial ? "stock" : "home");
-  const [ticker, setTicker] = useState(initial);
+  const [{ view, ticker }, setRoute] = useState(routeFromHash);
 
-  // Keep state in sync with back/forward navigation.
+  // Sync with back/forward + manual hash edits.
   useEffect(() => {
-    function onHash() {
-      const t = tickerFromHash();
-      setTicker(t);
-      setView(t ? "stock" : "home");
-    }
+    const onHash = () => setRoute(routeFromHash());
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
@@ -32,8 +31,7 @@ export default function App() {
     function onScroll() {
       if (raf) return;
       raf = requestAnimationFrame(() => {
-        const y = window.scrollY || 0;
-        document.documentElement.style.setProperty("--par", `${y * 0.18}px`);
+        document.documentElement.style.setProperty("--par", `${(window.scrollY || 0) * 0.18}px`);
         raf = 0;
       });
     }
@@ -41,18 +39,15 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  function openStock(t) {
-    setTicker(t);
-    setView("stock");
-    window.location.hash = encodeURIComponent(t);
+  function go(hash) {
+    window.location.hash = hash;
     window.scrollTo({ top: 0 });
+    setRoute(routeFromHash()); // immediate update (hashchange also fires)
   }
 
-  function goHome() {
-    setView("home");
-    setTicker(null);
-    window.location.hash = "";
-  }
+  const openStock = (t) => go(encodeURIComponent(t));
+  const openSignals = () => go("signals");
+  const goHome = () => go("");
 
   return (
     <div className="app">
@@ -63,7 +58,12 @@ export default function App() {
 
       <header className="topbar">
         <button className="brand" onClick={goHome}>StockBrain</button>
-        <span className="market-status">{marketStatus()}</span>
+        <nav className="topnav">
+          <button className={view === "signals" ? "navlink active" : "navlink"} onClick={openSignals}>
+            AI Signals
+          </button>
+          <span className="market-status">{marketStatus()}</span>
+        </nav>
       </header>
 
       {view === "home" && (
@@ -71,6 +71,9 @@ export default function App() {
           <h1 className="home-title">Search any stock</h1>
           <p className="home-sub">Live NSE/BSE prices, charts, financials, news — no setup needed.</p>
           <SearchBar onSelect={openStock} autoFocus large />
+          <button className="home-signals-link" onClick={openSignals}>
+            ✨ Explore AI buy/sell signals →
+          </button>
         </main>
       )}
 
@@ -80,6 +83,12 @@ export default function App() {
             <SearchBar onSelect={openStock} />
           </div>
           <StockPage ticker={ticker} />
+        </main>
+      )}
+
+      {view === "signals" && (
+        <main className="stock-view">
+          <SignalsDashboard onOpenStock={openStock} />
         </main>
       )}
     </div>
