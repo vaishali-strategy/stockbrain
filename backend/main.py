@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .api import market as market_api
 from .api import search as search_api
+from .api import signals as signals_api
 
 app = FastAPI(title="StockBrain", version="2.4.0-slice")
 
@@ -26,6 +27,7 @@ app.add_middleware(
 
 app.include_router(search_api.router)
 app.include_router(market_api.router)
+app.include_router(signals_api.router)
 
 
 @app.get("/health")

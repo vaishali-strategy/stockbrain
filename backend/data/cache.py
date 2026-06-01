@@ -187,11 +187,20 @@ def bulk_download(tickers: list[str]) -> dict[str, list[dict]]:
 
     data = retry_with_backoff(_download)
     out: dict[str, list[dict]] = {}
+    # With group_by="ticker" and many symbols, columns are a MultiIndex keyed by ticker.
+    cols = getattr(data, "columns", None)
+    multi = hasattr(cols, "levels")
+    available = set(cols.get_level_values(0)) if multi else set()
     conn = _connect()
     try:
         for ticker in tickers:
             try:
-                sub = data[ticker] if ticker in getattr(data, "columns", []) else None
+                if multi:
+                    if ticker not in available:
+                        continue
+                    sub = data[ticker]
+                else:
+                    sub = data  # single-ticker download → flat columns
                 if sub is None or sub.empty:
                     continue
                 rows = [
