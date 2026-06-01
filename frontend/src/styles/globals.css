@@ -1657,6 +1657,74 @@ body > #root::before {
   border-radius: 999px;
 }
 
+/* ---------- portfolio ---------- */
+.pf-actions {
+  display: flex;
+  gap: 8px;
+}
+.pf-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.pf-sum-card {
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+}
+.pf-sum-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-faint);
+}
+.pf-sum-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.pf-sum-sub {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+.pf-add {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 10px;
+  margin-bottom: 18px;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .pf-add {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.pf-table th,
+.pf-table td {
+  text-align: right;
+}
+.pf-table th:first-child,
+.pf-table td:first-child {
+  text-align: left;
+}
+.pf-row {
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.pf-row:hover {
+  background: rgba(141, 92, 255, 0.1);
+}
+.pf-pct {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
 /* ---------- watchlist ---------- */
 .watchlist-panel {
   padding: 8px 8px;

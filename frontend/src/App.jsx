@@ -3,6 +3,7 @@ import SearchBar from "./components/SearchBar.jsx";
 import StockPage from "./components/StockPage.jsx";
 import SignalsDashboard from "./components/SignalsDashboard.jsx";
 import Watchlist from "./components/Watchlist.jsx";
+import Portfolio from "./components/Portfolio.jsx";
 import ChatPanel from "./components/ChatPanel.jsx";
 import ObsidianSync from "./components/ObsidianSync.jsx";
 import { marketStatus } from "./api.js";
@@ -17,6 +18,7 @@ function routeFromHash() {
   if (!h) return { view: "home", ticker: null };
   if (h.toLowerCase() === "signals") return { view: "signals", ticker: null };
   if (h.toLowerCase() === "watchlist") return { view: "watchlist", ticker: null };
+  if (h.toLowerCase() === "portfolio") return { view: "portfolio", ticker: null };
   if (h.toLowerCase() === "chat") return { view: "chat", ticker: null };
   if (h.toLowerCase() === "settings") return { view: "settings", ticker: null };
   return { view: "stock", ticker: h };
@@ -56,6 +58,7 @@ export default function App() {
   const openStock = (t) => go(encodeURIComponent(t));
   const openSignals = () => go("signals");
   const openWatchlist = () => go("watchlist");
+  const openPortfolio = () => go("portfolio");
   const openChat = () => go("chat");
   const openSettings = () => go("settings");
   const goHome = () => go("");
@@ -79,6 +82,9 @@ export default function App() {
           <button className={view === "watchlist" ? "navlink active" : "navlink"} onClick={openWatchlist}>
             Watchlist
             {watchlist.length > 0 && <span className="nav-badge">{watchlist.length}</span>}
+          </button>
+          <button className={view === "portfolio" ? "navlink active" : "navlink"} onClick={openPortfolio}>
+            Portfolio
           </button>
           <button className={view === "settings" ? "navlink active navlink-icon" : "navlink navlink-icon"} onClick={openSettings} title="Settings">
             ⚙
@@ -116,6 +122,12 @@ export default function App() {
       {view === "watchlist" && (
         <main className="stock-view">
           <Watchlist onOpenStock={openStock} />
+        </main>
+      )}
+
+      {view === "portfolio" && (
+        <main className="stock-view">
+          <Portfolio onOpenStock={openStock} />
         </main>
       )}
 
