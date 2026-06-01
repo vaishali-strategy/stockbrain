@@ -11,10 +11,11 @@ import json
 import os
 from pathlib import Path
 
-import chromadb
-
 from .. import config
 from . import loader
+
+# chromadb is imported lazily inside get_collection() so the server can start even if the
+# (heavy) vector-store dependency isn't present/loaded yet — only RAG sync/search needs it.
 
 _COLLECTION = "stockbrain_vault"
 _CHUNK_SIZE = 800
@@ -63,6 +64,8 @@ def embed_texts(texts: list[str]) -> list[list[float]]:
 def get_collection():
     global _client
     if _client is None:
+        import chromadb  # lazy: heavy native dep, only needed for vault indexing/search
+
         Path(config.CHROMA_PATH).resolve().mkdir(parents=True, exist_ok=True)
         _client = chromadb.PersistentClient(path=str(Path(config.CHROMA_PATH).resolve()))
     return _client.get_or_create_collection(_COLLECTION, metadata={"hnsw:space": "cosine"})

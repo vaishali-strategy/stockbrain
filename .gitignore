@@ -19,5 +19,11 @@ dist/
 dist-electron/
 frontend/dist/
 
+# PyInstaller backend freeze + electron-builder output
+dist-backend/
+build-backend/
+*.spec
+dist-installers/
+
 # OS
 .DS_Store

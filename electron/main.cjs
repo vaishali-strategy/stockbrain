@@ -41,7 +41,9 @@ function startBackend() {
   const venvPy = process.platform === "win32"
     ? path.join(ROOT, ".venv", "Scripts", "python.exe")
     : path.join(ROOT, ".venv", "bin", "python");
-  const sidecar = path.join(process.resourcesPath || ROOT, "stockbrain-server");
+  // Frozen onedir sidecar (PyInstaller): resources/stockbrain-server/stockbrain-server
+  const exe = process.platform === "win32" ? "stockbrain-server.exe" : "stockbrain-server";
+  const sidecar = path.join(process.resourcesPath || ROOT, "stockbrain-server", exe);
 
   let cmd, args;
   if (app.isPackaged && require("fs").existsSync(sidecar)) {
