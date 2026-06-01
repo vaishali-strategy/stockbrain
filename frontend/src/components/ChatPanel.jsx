@@ -58,6 +58,7 @@ export default function ChatPanel({ initialTicker = null, onOpenSettings }) {
             ...m,
             sources: final.sources || [],
             ai_generated: final.ai_generated,
+            provider: final.provider,
             streaming: false,
           }))
       );
@@ -102,6 +103,9 @@ export default function ChatPanel({ initialTicker = null, onOpenSettings }) {
           <div key={i} className={`chat-msg ${m.role}`}>
             <div className="chat-bubble">
               {m.content || (m.streaming ? <span className="typing">●●●</span> : "")}
+              {m.role === "assistant" && !m.streaming && m.provider && (
+                <div className="chat-engine">answered by {m.provider}</div>
+              )}
               {m.role === "assistant" && m.sources && m.sources.length > 0 && (
                 <div className="chat-sources">
                   <span className="chat-sources-label">Sources</span>

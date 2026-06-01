@@ -30,6 +30,13 @@ SIGNALS_MODEL: str = os.getenv("SIGNALS_MODEL", "claude-haiku-4-5-20251001").str
 CHAT_MODEL: str = os.getenv("CHAT_MODEL", "claude-sonnet-4-6").strip()
 OVERVIEW_MODEL: str = os.getenv("OVERVIEW_MODEL", "claude-sonnet-4-6").strip()
 
+# --- Chat LLM provider ---
+# "auto" (default): use Anthropic if a key is set, else a local Ollama if reachable.
+# "anthropic" forces Claude; "ollama" forces the local model (keyless, offline).
+LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "auto").strip().lower()
+OLLAMA_URL: str = os.getenv("OLLAMA_URL", "http://localhost:11434").strip()
+OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "llama3").strip()
+
 
 def has_anthropic_key() -> bool:
     """True when an Anthropic key is configured, so callers can enable AI paths."""

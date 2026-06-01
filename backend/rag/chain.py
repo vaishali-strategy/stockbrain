@@ -8,9 +8,54 @@ handled by the chat API, which composes a reply from retrieved snippets instead.
 
 from __future__ import annotations
 
+import json
+import time
+
+import requests
+
 from .. import config
 from ..data import market, news
 from . import retriever
+
+# Cache the local-Ollama reachability check briefly so we don't probe on every request.
+_ollama_state: tuple[float, bool] = (0.0, False)
+
+
+def _ollama_available() -> bool:
+    global _ollama_state
+    ts, ok = _ollama_state
+    if time.time() - ts < 30:
+        return ok
+    try:
+        ok = requests.get(f"{config.OLLAMA_URL}/api/tags", timeout=2).status_code == 200
+    except Exception:  # noqa: BLE001
+        ok = False
+    _ollama_state = (time.time(), ok)
+    return ok
+
+
+def resolve_provider() -> str | None:
+    """Which LLM answers chat: 'anthropic', 'ollama', or None (retrieval-only)."""
+    p = config.LLM_PROVIDER
+    if p == "anthropic":
+        return "anthropic" if config.has_anthropic_key() else None
+    if p == "ollama":
+        return "ollama" if _ollama_available() else None
+    # auto: prefer Claude when a key exists, else fall back to a local model.
+    if config.has_anthropic_key():
+        return "anthropic"
+    if _ollama_available():
+        return "ollama"
+    return None
+
+
+def provider_label(provider: str | None) -> str:
+    if provider == "anthropic":
+        return f"Claude · {config.CHAT_MODEL}"
+    if provider == "ollama":
+        return f"local · {config.OLLAMA_MODEL}"
+    return "retrieval only"
+
 
 _SYSTEM_PROMPT = """You are StockBrain, an expert stock market research assistant.
 
@@ -89,19 +134,30 @@ def _user_turn(query: str, context: dict) -> str:
     )
 
 
-def stream_tokens(query: str, context: dict, history: list[dict] | None = None):
-    """Yield answer text deltas from Claude (caller must ensure an API key is set)."""
-    from anthropic import Anthropic
-
-    client = Anthropic(api_key=config.ANTHROPIC_API_KEY)
-    messages = []
+def _history_messages(history: list[dict] | None) -> list[dict]:
+    out = []
     for turn in history or []:
         role = turn.get("role")
         content = turn.get("content", "")
         if role in ("user", "assistant") and content:
-            messages.append({"role": role, "content": content})
-    messages.append({"role": "user", "content": _user_turn(query, context)})
+            out.append({"role": role, "content": content})
+    return out
 
+
+def stream_tokens(query: str, context: dict, history=None, provider: str | None = "anthropic"):
+    """Yield answer text deltas from the chosen provider."""
+    if provider == "ollama":
+        yield from _stream_ollama(query, context, history)
+    else:
+        yield from _stream_anthropic(query, context, history)
+
+
+def _stream_anthropic(query: str, context: dict, history=None):
+    from anthropic import Anthropic
+
+    client = Anthropic(api_key=config.ANTHROPIC_API_KEY)
+    messages = _history_messages(history)
+    messages.append({"role": "user", "content": _user_turn(query, context)})
     with client.messages.stream(
         model=config.CHAT_MODEL,
         max_tokens=1024,
@@ -110,3 +166,30 @@ def stream_tokens(query: str, context: dict, history: list[dict] | None = None):
     ) as stream:
         for text in stream.text_stream:
             yield text
+
+
+def _stream_ollama(query: str, context: dict, history=None):
+    """Stream from a local Ollama model — keyless, offline. Uses /api/chat NDJSON."""
+    messages = [{"role": "system", "content": _SYSTEM_PROMPT}]
+    messages += _history_messages(history)
+    messages.append({"role": "user", "content": _user_turn(query, context)})
+
+    resp = requests.post(
+        f"{config.OLLAMA_URL}/api/chat",
+        json={"model": config.OLLAMA_MODEL, "messages": messages, "stream": True},
+        stream=True,
+        timeout=(10, 300),  # local generation can be slow to first token
+    )
+    resp.raise_for_status()
+    for line in resp.iter_lines():
+        if not line:
+            continue
+        try:
+            obj = json.loads(line)
+        except ValueError:
+            continue
+        chunk = (obj.get("message") or {}).get("content", "")
+        if chunk:
+            yield chunk
+        if obj.get("done"):
+            break
