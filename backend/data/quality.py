@@ -12,10 +12,18 @@ inorganic revenue, DCF, true peer P/E) are flagged for human judgment rather tha
 
 from __future__ import annotations
 
+import json
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
 import yfinance as yf
 
+from .. import config
 from . import screener_metrics, shareholding
 from .cache import retry_with_backoff
+
+_NARR_DIR = Path(__file__).resolve().parent.parent / "db" / "quality_narrative"
+_NARR_TTL = timedelta(days=1)
 
 
 # --------------------------------------------------------------------------- helpers
@@ -268,6 +276,115 @@ def _build_checklist(eq, moat, cap, val, peers) -> list[dict]:
     return items
 
 
+_NARR_SYSTEM = (
+    "You are a buy-side equity analyst. Given computed metrics for an Indian (NSE/BSE) stock, "
+    "write a tight, plain-English 'analyst take' of 4-6 sentences. You MUST: (1) name and explain "
+    "the company's competitive MOAT — its type (cost advantage / switching costs / network "
+    "effects / brand & intangibles / regulatory) and how durable it looks given the ROCE record; "
+    "(2) comment on earnings quality (does profit convert to cash?); (3) note capital allocation "
+    "(debt, promoter holding, reinvestment); (4) say whether the valuation looks fair versus peers. "
+    "Be honest about weaknesses. No buy/sell call, no price targets. Prices in ₹. Plain prose — no "
+    "headers, no bullet points."
+)
+
+
+def _narr_facts(ticker, info, eq, moat, cap, val, peers) -> str:
+    return (
+        f"Company: {info.get('longName') or ticker} ({info.get('sector')} / {info.get('industry')})\n"
+        f"Business: {(info.get('longBusinessSummary') or '')[:600]}\n"
+        f"ROCE: latest {moat['roce_latest']}%, 5y avg {moat['roce_avg_5y']}%, "
+        f"{moat['years_above_15']}/{moat['years_total']} yrs ≥15%\n"
+        f"Cash conversion (OCF/Net income): {eq['cash_conversion']}×; "
+        f"gross margin {eq['gross_margin_direction']}; revenue CAGR {eq['revenue_cagr']}%\n"
+        f"Debt/Equity: {cap['debt_equity_x']}×; promoter holding {cap['promoter_holding']}% "
+        f"({cap['promoter_trend']}); reinvestment {cap['reinvestment_rate']}%\n"
+        f"Valuation: P/E {val['pe_ratio']}, PEG {val['peg_ratio']}, EV/EBITDA {val['ev_ebitda']}, "
+        f"P/FCF {val['price_to_fcf']}; peer median P/E {peers.get('median_pe')}"
+    )
+
+
+def _rule_based_narrative(info, eq, moat, cap, val, peers) -> str:
+    name = info.get("shortName") or info.get("longName") or "This company"
+    parts = []
+    if moat["roce_consistent_15"]:
+        parts.append(
+            f"{name} has earned a high return on capital (5-yr avg ROCE {moat['roce_avg_5y']}%, "
+            f"{moat['years_above_15']}/{moat['years_total']} years above 15%), which points to a "
+            "durable competitive moat — something is keeping competitors from eroding its returns."
+        )
+    elif (moat["roce_avg_5y"] or 0) >= 12:
+        parts.append(
+            f"{name}'s ROCE has averaged {moat['roce_avg_5y']}% — decent but not elite, so any moat "
+            "looks moderate rather than wide."
+        )
+    elif moat["roce_avg_5y"] is not None:
+        parts.append(
+            f"{name}'s ROCE has averaged only {moat['roce_avg_5y']}%, below the 15% bar — limited "
+            "evidence of a strong moat; returns may be commodity-like or capital-intensive."
+        )
+    cc = eq["cash_conversion"]
+    if cc is not None:
+        parts.append(
+            f"Profits {'convert well to cash' if cc >= 1 else 'are converting only partly to cash'} "
+            f"(operating cash flow is {cc}× net income)."
+        )
+    if cap["debt_equity_x"] is not None:
+        parts.append(
+            f"The balance sheet is {'conservative' if cap['debt_equity_x'] < 1 else 'carrying notable debt'} "
+            f"(D/E {cap['debt_equity_x']}×), with promoters holding {cap['promoter_holding']}% "
+            f"({cap['promoter_trend']})."
+        )
+    if val["pe_ratio"] and peers.get("median_pe"):
+        disc = round((val["pe_ratio"] / peers["median_pe"] - 1) * 100)
+        parts.append(
+            f"At a P/E of {val['pe_ratio']} it trades {abs(disc)}% "
+            f"{'below' if disc <= 0 else 'above'} the peer median ({peers['median_pe']})."
+        )
+    parts.append("(Connect an Anthropic API key for a deeper, business-specific moat read.)")
+    return " ".join(parts)
+
+
+def _narrative(ticker, info, eq, moat, cap, val, peers) -> tuple[str, bool]:
+    """Return (narrative, ai_generated). Claude when a key is set, else rule-based."""
+    symbol = ticker.split(".")[0].upper()
+    cache_file = _NARR_DIR / f"{symbol}.json"
+    if cache_file.exists():
+        try:
+            data = json.loads(cache_file.read_text(encoding="utf-8"))
+            if datetime.now(timezone.utc) - datetime.fromisoformat(data["_at"]) < _NARR_TTL:
+                return data["text"], data["ai"]
+        except (ValueError, OSError, KeyError):
+            pass
+
+    if config.has_anthropic_key():
+        try:
+            from anthropic import Anthropic
+
+            client = Anthropic(api_key=config.ANTHROPIC_API_KEY)
+            msg = client.messages.create(
+                model=config.OVERVIEW_MODEL,
+                max_tokens=420,
+                system=[{"type": "text", "text": _NARR_SYSTEM, "cache_control": {"type": "ephemeral"}}],
+                messages=[{"role": "user", "content": _narr_facts(ticker, info, eq, moat, cap, val, peers)}],
+            )
+            text = "".join(b.text for b in msg.content if b.type == "text").strip()
+            ai = True
+        except Exception:  # noqa: BLE001
+            text, ai = _rule_based_narrative(info, eq, moat, cap, val, peers), False
+    else:
+        text, ai = _rule_based_narrative(info, eq, moat, cap, val, peers), False
+
+    _NARR_DIR.mkdir(parents=True, exist_ok=True)
+    try:
+        cache_file.write_text(
+            json.dumps({"text": text, "ai": ai, "_at": datetime.now(timezone.utc).isoformat()}),
+            encoding="utf-8",
+        )
+    except OSError:
+        pass
+    return text, ai
+
+
 def get_quality_analysis(ticker: str) -> dict:
     """Assemble the four-layer profitability analysis + checklist for a ticker."""
     tk = yf.Ticker(ticker)
@@ -290,9 +407,12 @@ def get_quality_analysis(ticker: str) -> dict:
     peers = screener_metrics.get_peers(ticker)
     checklist = _build_checklist(eq, moat, cap, val, peers)
     score = sum(1 for c in checklist if c["status"] == "pass")
+    narrative, narrative_ai = _narrative(ticker, info, eq, moat, cap, val, peers)
 
     return {
         "ticker": ticker,
+        "narrative": narrative,
+        "narrative_ai": narrative_ai,
         "earnings_quality": eq,
         "moat": moat,
         "capital_allocation": cap,

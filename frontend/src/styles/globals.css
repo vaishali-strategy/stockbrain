@@ -1180,6 +1180,27 @@ body > #root::before {
   border-radius: 999px;
   text-transform: none;
 }
+.analyst-take {
+  background: linear-gradient(135deg, rgba(141, 92, 255, 0.12), rgba(255, 92, 168, 0.06));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 8px;
+}
+.analyst-take-head {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.analyst-take p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text);
+}
 .quality-layer {
   padding: 14px 0;
   border-bottom: 1px solid var(--glass-border);

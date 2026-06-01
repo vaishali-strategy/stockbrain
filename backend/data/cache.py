@@ -29,6 +29,11 @@ _HISTORY_PERIOD = "1y"
 # Map a UI chart period to a lookback window in calendar days (we slice cached rows).
 _PERIOD_DAYS = {"1w": 7, "1mo": 31, "3mo": 93, "6mo": 186, "1y": 372}
 
+# All-time history is fetched weekly (not daily) to keep the payload light, and memoized
+# in-process for a few hours since it changes slowly and the toggle is used rarely.
+_MAX_TTL = timedelta(hours=6)
+_max_memo: dict[str, tuple[datetime, list[dict]]] = {}
+
 T = TypeVar("T")
 
 
@@ -137,13 +142,44 @@ def _num(value) -> float | None:
     return None if f != f else f  # NaN check
 
 
-def get_history(ticker: str, period: str = "3mo") -> list[dict]:
-    """Return daily OHLCV for ``ticker`` over ``period`` as a list of dicts (oldest first).
+def _get_max_history(ticker: str) -> list[dict]:
+    """All-time weekly OHLCV (memoized ~6h). Fetched straight from yfinance, not the cache."""
+    memo = _max_memo.get(ticker)
+    if memo and datetime.now(timezone.utc) - memo[0] < _MAX_TTL:
+        return memo[1]
 
-    Reads from the cache; refetches only when the ticker's data is missing or stale.
+    def _download():
+        return yf.Ticker(ticker).history(period="max", interval="1wk", auto_adjust=False)
+
+    try:
+        df = retry_with_backoff(_download)
+    except Exception:  # noqa: BLE001
+        return memo[1] if memo else []
+    if df is None or df.empty:
+        return memo[1] if memo else []
+
+    rows = [
+        {
+            "date": idx.strftime("%Y-%m-%d"),
+            "open": _num(r.get("Open")), "high": _num(r.get("High")),
+            "low": _num(r.get("Low")), "close": _num(r.get("Close")),
+            "volume": _num(r.get("Volume")),
+        }
+        for idx, r in df.iterrows()
+    ]
+    _max_memo[ticker] = (datetime.now(timezone.utc), rows)
+    return rows
+
+
+def get_history(ticker: str, period: str = "3mo") -> list[dict]:
+    """Return OHLCV for ``ticker`` over ``period`` as a list of dicts (oldest first).
+
+    Daily periods read from the on-disk cache; ``max``/``all`` returns weekly all-time data.
     Returns ``[]`` if data can't be obtained.
     """
     period = period.lower()
+    if period in ("max", "all"):
+        return _get_max_history(ticker)
     window_days = _PERIOD_DAYS.get(period, _PERIOD_DAYS["3mo"])
     conn = _connect()
     try:

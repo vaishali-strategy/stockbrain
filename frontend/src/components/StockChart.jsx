@@ -29,6 +29,7 @@ const PERIODS = [
   ["3M", "3mo"],
   ["6M", "6mo"],
   ["1Y", "1y"],
+  ["MAX", "max"],
 ];
 
 export default function StockChart({ ticker, initial }) {

@@ -25,6 +25,18 @@ export default function ProfitabilityAnalysis({ quality }) {
         </span>
       </h2>
 
+      {quality.narrative && (
+        <div className="analyst-take">
+          <div className="analyst-take-head">
+            Analyst take
+            <span className={`tag ${quality.narrative_ai ? "tag-ai" : ""}`}>
+              {quality.narrative_ai ? "AI" : "Heuristic"}
+            </span>
+          </div>
+          <p>{quality.narrative}</p>
+        </div>
+      )}
+
       {/* Layer 1 */}
       <Layer n="1" title="Quality of Earnings" q="Is the profit real cash?">
         <Metric label="Cash conversion (OCF ÷ Net income)" value={fmtX(eq.cash_conversion)}
