@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getStock, getFundamentals } from "../api.js";
+import { useWatchlist, toggleWatchlist } from "../watchlist.js";
 import Reveal from "./Reveal.jsx";
 import StockCard from "./StockCard.jsx";
 import StockChart from "./StockChart.jsx";
@@ -18,6 +19,9 @@ export default function StockPage({ ticker }) {
   // fast profile renders immediately.
   const [fund, setFund] = useState(null);
   const [fundLoading, setFundLoading] = useState(true);
+
+  const watchlist = useWatchlist();
+  const watched = watchlist.some((i) => i.ticker === ticker);
 
   useEffect(() => {
     let cancelled = false;
@@ -57,9 +61,22 @@ export default function StockPage({ ticker }) {
     <div className="stockpage">
       <Reveal>
         <div className="stockpage-header">
-          <h1>{displayTicker}</h1>
-          {exchange && <span className="badge">{exchange}</span>}
-          {overview?.sector && <span className="chip">{overview.sector}</span>}
+          <div className="sp-head-left">
+            <div className="sp-head-title">
+              <h1>{displayTicker}</h1>
+              {exchange && <span className="badge">{exchange}</span>}
+              {overview?.sector && <span className="chip">{overview.sector}</span>}
+            </div>
+            {data.name && data.name !== displayTicker && (
+              <div className="sp-company-name">{data.name}</div>
+            )}
+          </div>
+          <button
+            className={`btn-watch ${watched ? "on" : ""}`}
+            onClick={() => toggleWatchlist({ ticker, name: data.name, exchange })}
+          >
+            {watched ? "★ In watchlist" : "☆ Watchlist"}
+          </button>
         </div>
       </Reveal>
 

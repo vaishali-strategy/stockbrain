@@ -24,6 +24,7 @@ def stock_profile(ticker: str, period: str = "3mo") -> dict:
     """
     return {
         "ticker": ticker,
+        "name": search.company_name(ticker),
         "quote": market.get_quote(ticker),
         "overview": overview.get_company_overview(ticker),
         "financials": market.get_financials(ticker),

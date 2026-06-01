@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar.jsx";
 import StockPage from "./components/StockPage.jsx";
 import SignalsDashboard from "./components/SignalsDashboard.jsx";
+import Watchlist from "./components/Watchlist.jsx";
 import { marketStatus } from "./api.js";
+import { useWatchlist } from "./watchlist.js";
 
 // Resolve the current view from the URL hash so views are bookmarkable.
 //   #signals        -> signals dashboard
@@ -12,11 +14,13 @@ function routeFromHash() {
   const h = decodeURIComponent(window.location.hash.replace(/^#/, "")).trim();
   if (!h) return { view: "home", ticker: null };
   if (h.toLowerCase() === "signals") return { view: "signals", ticker: null };
+  if (h.toLowerCase() === "watchlist") return { view: "watchlist", ticker: null };
   return { view: "stock", ticker: h };
 }
 
 export default function App() {
   const [{ view, ticker }, setRoute] = useState(routeFromHash);
+  const watchlist = useWatchlist();
 
   // Sync with back/forward + manual hash edits.
   useEffect(() => {
@@ -47,6 +51,7 @@ export default function App() {
 
   const openStock = (t) => go(encodeURIComponent(t));
   const openSignals = () => go("signals");
+  const openWatchlist = () => go("watchlist");
   const goHome = () => go("");
 
   return (
@@ -61,6 +66,10 @@ export default function App() {
         <nav className="topnav">
           <button className={view === "signals" ? "navlink active" : "navlink"} onClick={openSignals}>
             AI Signals
+          </button>
+          <button className={view === "watchlist" ? "navlink active" : "navlink"} onClick={openWatchlist}>
+            Watchlist
+            {watchlist.length > 0 && <span className="nav-badge">{watchlist.length}</span>}
           </button>
           <span className="market-status">{marketStatus()}</span>
         </nav>
@@ -89,6 +98,12 @@ export default function App() {
       {view === "signals" && (
         <main className="stock-view">
           <SignalsDashboard onOpenStock={openStock} />
+        </main>
+      )}
+
+      {view === "watchlist" && (
+        <main className="stock-view">
+          <Watchlist onOpenStock={openStock} />
         </main>
       )}
     </div>

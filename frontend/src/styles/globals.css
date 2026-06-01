@@ -224,6 +224,16 @@ body > #root::before {
   color: #fff;
   background: rgba(141, 92, 255, 0.18);
 }
+.nav-badge {
+  margin-left: 7px;
+  font-size: 10.5px;
+  font-weight: 700;
+  background: var(--accent-grad);
+  color: #fff;
+  padding: 1px 7px;
+  border-radius: 999px;
+  vertical-align: middle;
+}
 
 /* ---------- buttons ---------- */
 .btn-primary {
@@ -471,9 +481,15 @@ body > #root::before {
 }
 .stockpage-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 14px;
   margin-bottom: 22px;
+}
+.sp-head-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .stockpage-header h1 {
   margin: 0;
@@ -481,6 +497,33 @@ body > #root::before {
   font-size: 34px;
   font-weight: 700;
   letter-spacing: -1px;
+}
+.sp-company-name {
+  color: var(--text-dim);
+  font-size: 15px;
+  margin-top: 6px;
+}
+.btn-watch {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-dim);
+  border-radius: 11px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-watch:hover {
+  color: var(--text);
+  border-color: var(--glass-border-strong);
+}
+.btn-watch.on {
+  color: var(--amber);
+  border-color: rgba(255, 194, 75, 0.4);
+  background: rgba(255, 194, 75, 0.12);
 }
 .stockpage-grid {
   display: grid;
@@ -1079,6 +1122,67 @@ body > #root::before {
 .sig-actions {
   margin-top: auto;
   padding-top: 6px;
+}
+
+/* ---------- watchlist ---------- */
+.watchlist-panel {
+  padding: 8px 8px;
+}
+.watchlist-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.watchlist-table tr {
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.watchlist-table tr:hover {
+  background: rgba(141, 92, 255, 0.1);
+}
+.watchlist-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--glass-border);
+  font-variant-numeric: tabular-nums;
+}
+.watchlist-table tr:last-child td {
+  border-bottom: none;
+}
+.wl-id {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.wl-name {
+  color: var(--text-dim);
+  width: 100%;
+}
+.wl-price {
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+.wl-change {
+  text-align: right;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.wl-remove {
+  text-align: right;
+}
+.wl-remove button {
+  background: none;
+  border: none;
+  color: var(--text-faint);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+.wl-remove button:hover {
+  color: var(--neg);
+  background: rgba(255, 107, 139, 0.12);
 }
 
 /* loading line for lazy fundamentals */
