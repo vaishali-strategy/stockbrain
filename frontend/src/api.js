@@ -1,7 +1,9 @@
 // Tiny API client + formatting helpers shared across components.
 // All requests go through the Vite /api proxy (see vite.config.js).
 
-const API = "/api";
+// In dev/browser we go through the Vite proxy (/api). Inside the packaged Electron app
+// (loaded from file://) there's no proxy, so talk to the local backend directly.
+const API = (typeof window !== "undefined" && window.electronAPI?.apiBase) || "/api";
 
 export async function searchTickers(q) {
   const res = await fetch(`${API}/search?q=${encodeURIComponent(q)}`);

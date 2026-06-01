@@ -8,7 +8,10 @@ const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8765";
 
 export default defineConfig({
   root: "frontend",
+  // Relative asset paths so the built app loads from file:// inside Electron.
+  base: "./",
   plugins: [react()],
+  build: { outDir: "dist", emptyOutDir: true },
   server: {
     port: 5173,
     proxy: {

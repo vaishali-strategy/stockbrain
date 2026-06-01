@@ -19,11 +19,12 @@ from .api import vault as vault_api
 
 app = FastAPI(title="StockBrain", version="2.4.0-slice")
 
-# Allow the Vite dev server and the packaged Electron app to call the API.
+# This backend is localhost-only and uses no cookies, so allow any origin — the Vite dev
+# server (localhost:5173) and the packaged Electron app (file://, origin "null") both call it.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "app://."],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

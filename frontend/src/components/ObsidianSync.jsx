@@ -69,6 +69,17 @@ export default function ObsidianSync() {
               value={path}
               onChange={(e) => setPath(e.target.value)}
             />
+            {window.electronAPI?.selectVaultFolder && (
+              <button
+                className="btn-ghost"
+                onClick={async () => {
+                  const picked = await window.electronAPI.selectVaultFolder();
+                  if (picked) setPath(picked);
+                }}
+              >
+                Browse…
+              </button>
+            )}
             <button className="btn-ghost" onClick={save} disabled={busy}>Save</button>
           </div>
           <p className="settings-hint">
