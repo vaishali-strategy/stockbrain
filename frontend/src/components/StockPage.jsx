@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getStock, getFundamentals, getNotes, getVaultStatus } from "../api.js";
+import { getStock, getFundamentals, getQuality, getNotes, getVaultStatus } from "../api.js";
 import { useWatchlist, toggleWatchlist } from "../watchlist.js";
 import Reveal from "./Reveal.jsx";
 import NoteEditor from "./NoteEditor.jsx";
@@ -9,6 +9,7 @@ import KeyRatios from "./KeyRatios.jsx";
 import QuarterlyResults from "./QuarterlyResults.jsx";
 import FinancialsTable from "./FinancialsTable.jsx";
 import ShareholdingPattern from "./ShareholdingPattern.jsx";
+import ProfitabilityAnalysis from "./ProfitabilityAnalysis.jsx";
 import NewsFeed from "./NewsFeed.jsx";
 
 export default function StockPage({ ticker }) {
@@ -20,6 +21,11 @@ export default function StockPage({ ticker }) {
   // fast profile renders immediately.
   const [fund, setFund] = useState(null);
   const [fundLoading, setFundLoading] = useState(true);
+
+  // Profitability analysis is the heaviest call (multiple statements + screener) — fetch
+  // it on its own so nothing else waits on it.
+  const [quality, setQuality] = useState(null);
+  const [qualityLoading, setQualityLoading] = useState(true);
 
   const watchlist = useWatchlist();
   const watched = watchlist.some((i) => i.ticker === ticker);
@@ -55,6 +61,13 @@ export default function StockPage({ ticker }) {
       .then((d) => !cancelled && setFund(d))
       .catch(() => !cancelled && setFund(null))
       .finally(() => !cancelled && setFundLoading(false));
+
+    setQuality(null);
+    setQualityLoading(true);
+    getQuality(ticker)
+      .then((d) => !cancelled && setQuality(d))
+      .catch(() => !cancelled && setQuality(null))
+      .finally(() => !cancelled && setQualityLoading(false));
 
     return () => {
       cancelled = true;
@@ -112,6 +125,15 @@ export default function StockPage({ ticker }) {
           )}
 
           {fund?.ratios && <Reveal><KeyRatios ratios={fund.ratios} /></Reveal>}
+
+          {qualityLoading && !quality && (
+            <Reveal>
+              <section className="panel">
+                <div className="lazy-loading"><span className="spinner" /> Analysing profitability…</div>
+              </section>
+            </Reveal>
+          )}
+          {quality && <Reveal><ProfitabilityAnalysis quality={quality} /></Reveal>}
           {fund?.quarterly?.available && (
             <Reveal><QuarterlyResults quarterly={fund.quarterly} /></Reveal>
           )}

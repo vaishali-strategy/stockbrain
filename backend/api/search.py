@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from ..data import fundamentals, market, news, overview, search, shareholding
+from ..data import fundamentals, market, news, overview, quality, search, shareholding
 
 router = APIRouter(tags=["search"])
 
@@ -46,3 +46,11 @@ def stock_fundamentals(ticker: str) -> dict:
         "ratios": fundamentals.get_key_ratios(ticker),
         "shareholding": shareholding.get_shareholding(ticker),
     }
+
+
+@router.get("/stock/{ticker}/quality")
+def stock_quality(ticker: str) -> dict:
+    """Four-layer profitability analysis (earnings quality, moat, capital allocation,
+    valuation) + a pre-buy checklist. Heavier (multiple statements + screener) so it's
+    fetched lazily and separately from the main profile."""
+    return quality.get_quality_analysis(ticker)
