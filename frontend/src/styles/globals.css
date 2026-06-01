@@ -705,6 +705,13 @@ body > #root::before {
   color: #fff;
   box-shadow: 0 3px 14px rgba(141, 92, 255, 0.45);
 }
+.chart-subtitle {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-faint);
+  margin: 10px 0 2px 4px;
+}
 .chart-empty {
   height: 280px;
   display: flex;

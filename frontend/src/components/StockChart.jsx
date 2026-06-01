@@ -3,12 +3,24 @@ import {
   ResponsiveContainer,
   AreaChart,
   Area,
+  BarChart,
+  Bar,
+  Cell,
   XAxis,
   YAxis,
   Tooltip,
   CartesianGrid,
 } from "recharts";
 import { getChart, formatRupees } from "../api.js";
+
+// Compact share-volume formatter for the axis (Cr / L / K).
+function fmtVol(v) {
+  if (v == null) return "—";
+  if (v >= 1e7) return (v / 1e7).toFixed(1) + "Cr";
+  if (v >= 1e5) return (v / 1e5).toFixed(1) + "L";
+  if (v >= 1e3) return (v / 1e3).toFixed(0) + "K";
+  return String(v);
+}
 
 // recharts has no native candlestick — we plot a glowing gradient area of closing prices.
 const PERIODS = [
@@ -107,7 +119,45 @@ export default function StockChart({ ticker, initial }) {
           </AreaChart>
         </ResponsiveContainer>
       )}
+
+      {!loading && ohlcv.length > 0 && (
+        <>
+          <div className="chart-subtitle">Volume</div>
+          <ResponsiveContainer width="100%" height={96}>
+            <BarChart data={ohlcv} margin={{ top: 4, right: 8, left: 8, bottom: 0 }}>
+              <CartesianGrid stroke="rgba(255,255,255,0.05)" strokeDasharray="3 6" vertical={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#6f6b91" }} minTickGap={42} tickLine={false} axisLine={false} />
+              <YAxis
+                tick={{ fontSize: 11, fill: "#6f6b91" }}
+                width={62}
+                tickLine={false}
+                axisLine={false}
+                tickFormatter={fmtVol}
+              />
+              <Tooltip content={<VolumeTooltip />} cursor={{ fill: "rgba(255,255,255,0.05)" }} />
+              <Bar dataKey="volume" isAnimationActive={false} radius={[2, 2, 0, 0]}>
+                {ohlcv.map((d, i) => {
+                  // Green when the day closed up vs its open, red when it closed down.
+                  const upDay = d.close != null && d.open != null ? d.close >= d.open : true;
+                  return <Cell key={i} fill={upDay ? "rgba(47,230,168,0.55)" : "rgba(255,107,139,0.55)"} />;
+                })}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </>
+      )}
     </section>
+  );
+}
+
+function VolumeTooltip({ active, payload, label }) {
+  if (!active || !payload || !payload.length) return null;
+  const v = payload[0].payload.volume;
+  return (
+    <div className="chart-tooltip">
+      <div className="tt-date">{label}</div>
+      <div>Vol {v != null ? Number(v).toLocaleString("en-IN") : "—"}</div>
+    </div>
   );
 }
 
