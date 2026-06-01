@@ -14,7 +14,14 @@ from pathlib import Path
 
 from ..data import cache
 
-_UNIVERSE_PATH = Path(__file__).resolve().parent.parent / "data" / "nifty500_tickers.json"
+_DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+
+
+def _universe_path() -> Path:
+    """Signals scan the Nifty 100 (diverse, liquid, sector-spread) when available,
+    falling back to the full Nifty 500 list."""
+    nifty100 = _DATA_DIR / "nifty100_tickers.json"
+    return nifty100 if nifty100.exists() else _DATA_DIR / "nifty500_tickers.json"
 
 # Filters / thresholds (from the build brief).
 _MIN_AVG_VOLUME = 500_000      # liquid enough to trade
@@ -24,7 +31,8 @@ _RSI_OVERBOUGHT = 68
 _VOLUME_SPIKE = 2.0            # today's vol vs 20-day avg
 _MA_CROSS_WINDOW = 3          # "crossed 50-DMA in the last N trading days"
 
-# A dev escape hatch: cap how many tickers we scan (cold runs over 500 are slow).
+# Optional dev cap on how many tickers to scan. Default: scan the whole (Nifty 100) universe.
+# NOTE: this slices the list as-loaded, so only set it when you don't care about variety.
 _SCAN_LIMIT = int(os.getenv("SIGNALS_SCAN_LIMIT", "0")) or None
 
 
@@ -74,13 +82,21 @@ def _crossed_above(closes: list[float], ma_window: int, lookback: int) -> bool:
 
 
 def _load_universe() -> list[dict]:
-    if not _UNIVERSE_PATH.exists():
+    path = _universe_path()
+    if not path.exists():
         return []
     try:
-        rows = json.loads(_UNIVERSE_PATH.read_text(encoding="utf-8"))
+        rows = json.loads(path.read_text(encoding="utf-8"))
     except (ValueError, OSError):
         return []
+    # Drop NSE demerger placeholders (e.g. DUMMYVEDL1) — no tradable data on Yahoo.
+    rows = [r for r in rows if not r["ticker"].upper().startswith("DUMMY")]
     return rows[:_SCAN_LIMIT] if _SCAN_LIMIT else rows
+
+
+def universe_size() -> int:
+    """How many tickers are in the scan universe (after dropping placeholders)."""
+    return len(_load_universe())
 
 
 def _pct(a: float | None, b: float | None) -> float | None:

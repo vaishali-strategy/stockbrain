@@ -188,7 +188,7 @@ async def run(force: bool = False) -> dict:
         payload = {
             "signals": scores,
             "generated_at": datetime.now(_IST).isoformat(),
-            "total_candidates_scanned": len(candidates),
+            "total_candidates_scanned": screener.universe_size(),
             "signals_returned": len(scores),
             "ai_generated": use_claude,
         }
