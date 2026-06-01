@@ -26,8 +26,44 @@ class ChatIn(BaseModel):
     conversation_history: list[dict] = []
 
 
+class ChatConfigIn(BaseModel):
+    provider: str | None = None       # "auto" | "anthropic" | "ollama"
+    ollama_model: str | None = None
+
+
 def _sse(obj: dict) -> str:
     return f"data: {json.dumps(obj)}\n\n"
+
+
+def _chat_config() -> dict:
+    from .. import config
+
+    active = chain.resolve_provider()
+    return {
+        "provider_setting": config.get_llm_provider(),     # auto / anthropic / ollama
+        "active": chain.provider_label(active),            # human label of what answers
+        "active_provider": active,                          # anthropic / ollama / None
+        "has_key": config.has_anthropic_key(),
+        "ollama_available": chain._ollama_available(),
+        "ollama_model": config.get_ollama_model(),
+        "ollama_models": chain.ollama_models(),
+    }
+
+
+@router.get("/chat/config")
+def get_chat_config() -> dict:
+    return _chat_config()
+
+
+@router.post("/chat/config")
+def set_chat_config(cfg: ChatConfigIn) -> dict:
+    from .. import config
+
+    if cfg.provider in ("auto", "anthropic", "ollama"):
+        config.set_llm_provider(cfg.provider)
+    if cfg.ollama_model:
+        config.set_ollama_model(cfg.ollama_model)
+    return _chat_config()
 
 
 @router.post("/chat")

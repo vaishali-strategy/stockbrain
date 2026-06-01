@@ -86,3 +86,24 @@ def set_last_synced(iso: str) -> None:
     cfg = _read_app_config()
     cfg["last_synced"] = iso
     _write_app_config(cfg)
+
+
+def get_llm_provider() -> str:
+    """Chat provider: a runtime UI override wins over the .env LLM_PROVIDER."""
+    return (_read_app_config().get("llm_provider") or LLM_PROVIDER or "auto").lower()
+
+
+def set_llm_provider(provider: str) -> None:
+    cfg = _read_app_config()
+    cfg["llm_provider"] = (provider or "auto").lower()
+    _write_app_config(cfg)
+
+
+def get_ollama_model() -> str:
+    return _read_app_config().get("ollama_model") or OLLAMA_MODEL
+
+
+def set_ollama_model(model: str) -> None:
+    cfg = _read_app_config()
+    cfg["ollama_model"] = model.strip()
+    _write_app_config(cfg)

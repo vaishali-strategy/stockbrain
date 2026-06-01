@@ -36,7 +36,7 @@ def _ollama_available() -> bool:
 
 def resolve_provider() -> str | None:
     """Which LLM answers chat: 'anthropic', 'ollama', or None (retrieval-only)."""
-    p = config.LLM_PROVIDER
+    p = config.get_llm_provider()
     if p == "anthropic":
         return "anthropic" if config.has_anthropic_key() else None
     if p == "ollama":
@@ -53,8 +53,19 @@ def provider_label(provider: str | None) -> str:
     if provider == "anthropic":
         return f"Claude · {config.CHAT_MODEL}"
     if provider == "ollama":
-        return f"local · {config.OLLAMA_MODEL}"
+        return f"local · {config.get_ollama_model()}"
     return "retrieval only"
+
+
+def ollama_models() -> list[str]:
+    """List locally-installed Ollama models (empty if Ollama isn't running)."""
+    if not _ollama_available():
+        return []
+    try:
+        data = requests.get(f"{config.OLLAMA_URL}/api/tags", timeout=2).json()
+        return [m.get("name") for m in data.get("models", []) if m.get("name")]
+    except Exception:  # noqa: BLE001
+        return []
 
 
 _SYSTEM_PROMPT = """You are StockBrain, an expert stock market research assistant.
@@ -176,7 +187,7 @@ def _stream_ollama(query: str, context: dict, history=None):
 
     resp = requests.post(
         f"{config.OLLAMA_URL}/api/chat",
-        json={"model": config.OLLAMA_MODEL, "messages": messages, "stream": True},
+        json={"model": config.get_ollama_model(), "messages": messages, "stream": True},
         stream=True,
         timeout=(10, 300),  # local generation can be slow to first token
     )

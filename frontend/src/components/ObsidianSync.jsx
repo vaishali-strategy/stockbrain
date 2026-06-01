@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getVaultStatus, setVaultConfig, syncVault } from "../api.js";
+import { getVaultStatus, setVaultConfig, syncVault, getChatConfig, setChatConfig } from "../api.js";
 import Reveal from "./Reveal.jsx";
 
 export default function ObsidianSync() {
@@ -7,6 +7,16 @@ export default function ObsidianSync() {
   const [path, setPath] = useState("");
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
+  const [chat, setChat] = useState(null);
+
+  useEffect(() => {
+    getChatConfig().then(setChat).catch(() => setChat(null));
+  }, []);
+
+  async function saveChat(patch) {
+    const next = await setChatConfig(patch);
+    setChat(next);
+  }
 
   async function refresh() {
     try {
@@ -105,14 +115,69 @@ export default function ObsidianSync() {
         </section>
       </Reveal>
 
+      {chat && (
+        <Reveal>
+          <section className="panel settings-section">
+            <h2 className="panel-title">
+              Chat engine
+              <span className="quality-score">active: {chat.active}</span>
+            </h2>
+            <p className="settings-hint" style={{ marginTop: 0 }}>
+              {chat.has_key
+                ? "Anthropic API key detected."
+                : chat.ollama_available
+                ? "No API key — using your local Ollama (free, offline)."
+                : "No API key and no local Ollama running. Run `ollama run llama3`, or add an Anthropic key, for chat answers."}
+            </p>
+
+            <label className="settings-label">Provider</label>
+            <div className="note-type-row">
+              {[
+                ["auto", "Auto"],
+                ["anthropic", "Anthropic (Claude)"],
+                ["ollama", "Local (Ollama)"],
+              ].map(([val, label]) => (
+                <button
+                  key={val}
+                  className={`filter-pill ${chat.provider_setting === val ? "active" : ""}`}
+                  onClick={() => saveChat({ provider: val })}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            {(chat.provider_setting === "ollama" ||
+              (chat.provider_setting === "auto" && !chat.has_key)) &&
+              chat.ollama_models.length > 0 && (
+                <>
+                  <label className="settings-label">Local model</label>
+                  <div className="note-type-row">
+                    {chat.ollama_models.map((m) => (
+                      <button
+                        key={m}
+                        className={`filter-pill ${chat.ollama_model === m ? "active" : ""}`}
+                        onClick={() => saveChat({ ollama_model: m })}
+                      >
+                        {m}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+          </section>
+        </Reveal>
+      )}
+
       <Reveal>
         <section className="panel settings-section">
           <h2 className="panel-title">Privacy</h2>
           <p className="muted">
             StockBrain is local-first: your notes are indexed on your machine with offline
-            embeddings. However, when you <strong>chat</strong>, the relevant note excerpts and live
-            market data are sent to Anthropic's API to generate the answer. Nothing is sent until you
-            ask a question, and indexing/search never leave your machine.
+            embeddings, and indexing/search never leave your machine. When you <strong>chat</strong>,
+            the relevant note excerpts + live market data are sent to whichever engine you pick above —
+            a <strong>local Ollama model stays entirely on your machine</strong>, whereas Anthropic
+            (Claude) is a cloud API. Nothing is sent until you ask a question.
           </p>
         </section>
       </Reveal>

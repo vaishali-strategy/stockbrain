@@ -123,6 +123,21 @@ export async function streamChat(body, onToken, onDone) {
   }
 }
 
+export async function getChatConfig() {
+  const res = await fetch(`${API}/chat/config`);
+  if (!res.ok) throw new Error("chat config failed");
+  return res.json();
+}
+
+export async function setChatConfig(body) {
+  const res = await fetch(`${API}/chat/config`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  return res.json();
+}
+
 export async function getQuote(ticker) {
   const res = await fetch(`${API}/quote/${encodeURIComponent(ticker)}`);
   if (!res.ok) throw new Error("quote fetch failed");
