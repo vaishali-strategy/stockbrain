@@ -1,11 +1,6 @@
-# StockBrain Python backend dependencies.
-#
-# NOTE: Pass 1 (the vertical slice: search + stock page) only needs the deps marked
-# [slice]. The RAG and signals deps are listed here per the full build brief but are
-# installed when those features are built (chromadb/fastembed wheels on Python 3.13
-# are verified at that point).
+# StockBrain Python backend dependencies (verified on Python 3.13).
 
-# --- [slice] core API + data ---
+# --- core API + data ---
 fastapi
 uvicorn
 python-dotenv
@@ -13,14 +8,13 @@ yfinance
 requests
 anthropic
 python-frontmatter
+beautifulsoup4     # screener.in shareholding scraping
 
-# --- RAG (later pass) ---
-langchain
-langchain-anthropic
-langchain-chroma
+# --- RAG (local, offline embeddings) ---
 chromadb
 fastembed          # local ONNX embeddings — free, offline, no torch (do NOT add openai/torch)
+# NOTE: we use chromadb + fastembed + the Anthropic SDK directly rather than LangChain —
+# fewer deps and simpler streaming. No langchain/openai/torch required.
 
-# --- vault watching + tests (later pass) ---
-watchdog
+# --- tests ---
 pytest             # unit tests for scorer logic

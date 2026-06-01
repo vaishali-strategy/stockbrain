@@ -10,6 +10,9 @@ __pycache__/
 # Local databases / caches (regenerated at runtime) — ignore everything under db/
 backend/db/
 
+# Generated example vault (recreate with: npm run seed)
+example-vault/
+
 # Node / frontend build
 node_modules/
 dist/
