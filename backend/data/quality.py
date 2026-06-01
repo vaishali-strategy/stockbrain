@@ -110,11 +110,35 @@ def _earnings_quality(income, cashflow, balance) -> dict:
     }
 
 
+def _is_financial(info: dict) -> bool:
+    sec = (info.get("sector") or "").lower()
+    ind = (info.get("industry") or "").lower()
+    return "financial" in sec or any(
+        w in ind for w in ("bank", "insurance", "financial", "capital markets", "asset management")
+    )
+
+
+def _debt_equity(info: dict, balance) -> float | None:
+    """D/E as a multiple. Prefer yfinance's field; if absent (common for banks), compute it
+    straight from the balance sheet (Total Debt ÷ Shareholders' Equity)."""
+    raw = _f(info.get("debtToEquity"))              # yfinance reports this as a percentage
+    if raw is not None:
+        return round(raw / 100, 2)
+    debt = _stmt(balance, "Total Debt")
+    equity = _stmt(balance, "Stockholders Equity", "Common Stock Equity",
+                   "Total Equity Gross Minority Interest")
+    if debt and equity and equity[-1]:
+        return round(debt[-1] / equity[-1], 2)
+    return None
+
+
 def _moat(ticker: str) -> dict:
     roce = screener_metrics.get_roce_history(ticker)
+    metric = roce.get("metric") or "ROCE"           # "ROE" for banks/financials
     vals = [v for v in roce.get("roce", []) if v is not None] if roce.get("available") else []
     last5 = vals[-5:]
     return {
+        "metric": metric,
         "roce_available": bool(vals),
         "roce_history": roce.get("roce", []),
         "roce_years": roce.get("years", []),
@@ -127,9 +151,8 @@ def _moat(ticker: str) -> dict:
     }
 
 
-def _capital_allocation(ticker: str, info: dict) -> dict:
-    raw_de = _f(info.get("debtToEquity"))           # yfinance reports this as a percentage
-    de_x = round(raw_de / 100, 2) if raw_de is not None else None
+def _capital_allocation(ticker: str, info: dict, balance) -> dict:
+    de_x = _debt_equity(info, balance)
     payout = _f(info.get("payoutRatio"))
     div_yield = _f(info.get("dividendYield"))
 
@@ -189,7 +212,7 @@ def _check(label, status, detail):
     return {"label": label, "status": status, "detail": detail}
 
 
-def _build_checklist(eq, moat, cap, val, peers) -> list[dict]:
+def _build_checklist(eq, moat, cap, val, peers, is_financial=False) -> list[dict]:
     items = []
 
     cagr = eq["revenue_cagr"]
@@ -207,22 +230,31 @@ def _build_checklist(eq, moat, cap, val, peers) -> list[dict]:
     ))
 
     d = eq["gross_margin_direction"]
-    items.append(_check(
-        "Gross margins stable or expanding",
-        "pass" if d in ("expanding", "stable") else "warn" if d == "shrinking" else "info",
-        f"Gross margin {d}" if d else "Gross-margin history unavailable",
-    ))
+    if is_financial and not d:
+        items.append(_check(
+            "Margins stable or expanding",
+            "info",
+            "Banks have no gross margin (no COGS) — judge on net interest margin / net margin instead",
+        ))
+    else:
+        items.append(_check(
+            "Gross margins stable or expanding",
+            "pass" if d in ("expanding", "stable") else "warn" if d == "shrinking" else "info",
+            f"Gross margin {d}" if d else "Gross-margin history unavailable",
+        ))
 
+    metric = moat.get("metric", "ROCE")
     if moat["roce_available"]:
         consistent = moat["roce_consistent_15"]
         avg = moat["roce_avg_5y"]
         items.append(_check(
-            "ROCE > 15% consistently (moat test)",
+            f"{metric} > 15% consistently (moat test)",
             "pass" if consistent else "warn" if (avg or 0) >= 15 else "fail",
-            f"{moat['years_above_15']}/{moat['years_total']} yrs ≥15%; 5y avg {avg}%",
+            f"{moat['years_above_15']}/{moat['years_total']} yrs ≥15%; 5y avg {avg}%"
+            + (" — banks use ROE, not ROCE" if metric == "ROE" else ""),
         ))
     else:
-        items.append(_check("ROCE > 15% consistently (moat test)", "info", "ROCE history unavailable"))
+        items.append(_check(f"{metric} > 15% consistently (moat test)", "info", f"{metric} history unavailable"))
 
     de = cap["debt_equity_x"]
     items.append(_check(
@@ -400,10 +432,12 @@ def get_quality_analysis(ticker: str) -> dict:
     cashflow = _safe(lambda: tk.cashflow)
     balance = _safe(lambda: tk.balance_sheet)
 
+    is_financial = _is_financial(info)
     eq = _earnings_quality(income, cashflow, balance)
     moat = _moat(ticker)
-    cap = _capital_allocation(ticker, info)
+    cap = _capital_allocation(ticker, info, balance)
     val = _valuation(info, cashflow)
+    val["ev_ebitda_na"] = is_financial and val.get("ev_ebitda") is None
     peers = screener_metrics.get_peers(ticker)
 
     # Fundamental fair-value anchor: peer-median P/E × trailing EPS.
@@ -423,12 +457,13 @@ def get_quality_analysis(ticker: str) -> dict:
         val["upside_to_fair_pct"] = None
         val["fair_value_reliable"] = False
 
-    checklist = _build_checklist(eq, moat, cap, val, peers)
+    checklist = _build_checklist(eq, moat, cap, val, peers, is_financial)
     score = sum(1 for c in checklist if c["status"] == "pass")
     narrative, narrative_ai = _narrative(ticker, info, eq, moat, cap, val, peers)
 
     return {
         "ticker": ticker,
+        "is_financial": is_financial,
         "narrative": narrative,
         "narrative_ai": narrative_ai,
         "earnings_quality": eq,

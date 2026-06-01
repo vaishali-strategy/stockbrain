@@ -15,6 +15,8 @@ const fmtNum = (v) => (v == null ? "—" : v);
 export default function ProfitabilityAnalysis({ quality }) {
   if (!quality) return null;
   const { earnings_quality: eq, moat, capital_allocation: cap, valuation: val, checklist } = quality;
+  const isFin = quality.is_financial;
+  const metric = moat.metric || "ROCE"; // banks report ROE, not ROCE
 
   return (
     <section className="panel quality-panel">
@@ -42,8 +44,9 @@ export default function ProfitabilityAnalysis({ quality }) {
         <Metric label="Cash conversion (OCF ÷ Net income)" value={fmtX(eq.cash_conversion)}
           tone={eq.cash_conversion >= 1 ? "good" : eq.cash_conversion >= 0.8 ? "warn" : "bad"}
           hint="≥ 1× means profit turns into real cash" />
-        <Metric label="Gross-margin trend" value={eq.gross_margin_direction || "—"}
-          tone={["expanding", "stable"].includes(eq.gross_margin_direction) ? "good" : "warn"} />
+        <Metric label="Gross-margin trend"
+          value={eq.gross_margin_direction || (isFin ? "n/a (bank — no COGS)" : "—")}
+          tone={["expanding", "stable"].includes(eq.gross_margin_direction) ? "good" : null} />
         <Metric label="Revenue CAGR" value={fmtPct(eq.revenue_cagr)} />
         <Metric label="Receivables vs revenue" value={eq.receivables_outpacing_revenue ? "outpacing ⚠" : "in line"}
           tone={eq.receivables_outpacing_revenue ? "warn" : "good"}
@@ -52,15 +55,15 @@ export default function ProfitabilityAnalysis({ quality }) {
 
       {/* Layer 2 */}
       <Layer n="2" title="Competitive Moat" q="Why can't a rival copy this?">
-        <Metric label="ROCE (latest)" value={fmtPct(moat.roce_latest)}
+        <Metric label={`${metric} (latest)`} value={fmtPct(moat.roce_latest)}
           tone={(moat.roce_latest ?? 0) >= 15 ? "good" : "warn"} />
-        <Metric label="ROCE 5-yr average" value={fmtPct(moat.roce_avg_5y)}
+        <Metric label={`${metric} 5-yr average`} value={fmtPct(moat.roce_avg_5y)}
           tone={(moat.roce_avg_5y ?? 0) >= 15 ? "good" : "warn"} />
-        <Metric label="Years ROCE ≥ 15%" value={moat.years_total ? `${moat.years_above_15}/${moat.years_total}` : "—"}
+        <Metric label={`Years ${metric} ≥ 15%`} value={moat.years_total ? `${moat.years_above_15}/${moat.years_total}` : "—"}
           tone={moat.roce_consistent_15 ? "good" : "warn"}
-          hint="Consistently high ROCE is the practical moat test" />
+          hint={`Consistently high ${metric} is the practical moat test${metric === "ROE" ? " (banks use ROE)" : ""}`} />
         {moat.roce_available && moat.roce_history?.length > 0 && (
-          <RoceSpark history={moat.roce_history} years={moat.roce_years} />
+          <RoceSpark history={moat.roce_history} years={moat.roce_years} metric={metric} />
         )}
       </Layer>
 
@@ -81,7 +84,9 @@ export default function ProfitabilityAnalysis({ quality }) {
         <Metric label="PEG (P/E ÷ growth)" value={fmtNum(val.peg_ratio)}
           tone={val.peg_ratio == null ? null : val.peg_ratio < 1 ? "good" : val.peg_ratio < 2 ? "warn" : "bad"}
           hint="< 1 can mean growth is cheaply priced" />
-        <Metric label="EV / EBITDA" value={fmtNum(val.ev_ebitda)} hint="Better than P/E for capital-heavy firms" />
+        <Metric label="EV / EBITDA"
+          value={val.ev_ebitda != null ? val.ev_ebitda : isFin ? "n/a (bank)" : "—"}
+          hint={isFin ? "EBITDA isn't used for banks" : "Better than P/E for capital-heavy firms"} />
         <Metric label="Price / Free cash flow" value={fmtNum(val.price_to_fcf)} hint="The most honest valuation metric" />
         {val.fair_value_peer != null && (
           <Metric
@@ -144,7 +149,7 @@ function Metric({ label, value, tone, hint }) {
   );
 }
 
-function RoceSpark({ history, years }) {
+function RoceSpark({ history, years, metric = "ROCE" }) {
   const vals = history.map((v) => (v == null ? 0 : v));
   const max = Math.max(...vals, 15);
   return (
@@ -157,7 +162,7 @@ function RoceSpark({ history, years }) {
           title={`${years?.[i] || ""}: ${history[i] ?? "—"}%`}
         />
       ))}
-      <span className="roce-spark-label">ROCE %, last {vals.length}y · 15% line</span>
+      <span className="roce-spark-label">{metric} %, last {vals.length}y · 15% line</span>
     </div>
   );
 }

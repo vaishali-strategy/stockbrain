@@ -74,21 +74,26 @@ def _to_num(text: str) -> float | None:
         return None
 
 
-def _find_roce_row(soup: BeautifulSoup):
-    """Return (year_headers, roce_values) by locating the table row labelled ROCE."""
+def _find_return_row(soup: BeautifulSoup):
+    """Locate the return-metric row. Banks report ROE (no ROCE), so accept either —
+    preferring ROCE when both exist. Returns (metric, year_headers, values)."""
+    found: dict[str, tuple] = {}
     for table in soup.find_all("table"):
         thead = table.find("thead")
         if not thead:
             continue
+        years = [th.get_text(strip=True) for th in thead.find_all("th")][1:]
         for tr in table.find_all("tr"):
             cells = tr.find_all(["td", "th"])
             if not cells:
                 continue
-            if _norm(cells[0].get_text()) == "roce":
-                years = [th.get_text(strip=True) for th in thead.find_all("th")][1:]
-                values = [_to_num(c.get_text()) for c in cells[1:]]
-                return years, values
-    return None, None
+            label = _norm(cells[0].get_text())
+            if label in ("roce", "roe") and label not in found:
+                found[label] = (years, [_to_num(c.get_text()) for c in cells[1:]])
+    for metric in ("roce", "roe"):
+        if metric in found:
+            return metric.upper(), found[metric][0], found[metric][1]
+    return None, None, None
 
 
 def _scrape(symbol: str) -> dict:
@@ -98,23 +103,23 @@ def _scrape(symbol: str) -> dict:
         return r.text
 
     soup = BeautifulSoup(retry_with_backoff(_fetch), "html.parser")
-    years, values = _find_roce_row(soup)
-    if not years or not values or all(v is None for v in values):
-        return {"available": False, "source": "screener.in", "years": [], "roce": []}
+    metric, years, values = _find_return_row(soup)
+    if not metric or not years or not values or all(v is None for v in values):
+        return {"available": False, "source": "screener.in", "metric": None, "years": [], "roce": []}
 
-    # Align lengths and keep the most recent ~10 years.
     n = min(len(years), len(values))
     years, values = years[-n:], values[-n:]
     return {
         "available": True,
         "source": "screener.in",
+        "metric": metric,  # "ROCE" for most firms, "ROE" for banks/financials
         "years": years[-10:],
         "roce": values[-10:],
     }
 
 
 def get_roce_history(ticker: str) -> dict:
-    """Return {available, years[], roce[]} for the ROCE % history. Never raises."""
+    """Return {available, metric, years[], roce[]} — ROCE (or ROE for banks). Never raises."""
     symbol = _symbol(ticker)
     cached = _read_cache(symbol)
     if cached is not None:
@@ -122,7 +127,7 @@ def get_roce_history(ticker: str) -> dict:
     try:
         result = _scrape(symbol)
     except Exception:  # noqa: BLE001
-        result = {"available": False, "source": "screener.in", "years": [], "roce": []}
+        result = {"available": False, "source": "screener.in", "metric": None, "years": [], "roce": []}
     if result.get("available"):
         _write_cache(symbol, result)
     return result
