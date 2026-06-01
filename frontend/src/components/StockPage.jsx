@@ -103,7 +103,7 @@ export default function StockPage({ ticker }) {
           {fund?.shareholding?.available && (
             <Reveal><ShareholdingPattern shareholding={fund.shareholding} /></Reveal>
           )}
-          <Reveal><NewsFeed news={data.news} /></Reveal>
+          <Reveal><NewsFeed ticker={ticker} news={data.news} /></Reveal>
         </div>
 
         <aside className="stockpage-right">

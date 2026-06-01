@@ -130,24 +130,46 @@ def _epoch_to_iso(epoch) -> str:
         return ""
 
 
+def _dedupe_and_sort(items: list[dict]) -> list[dict]:
+    """Drop duplicate headlines and order strictly newest-first (undated last)."""
+    seen: set[str] = set()
+    unique = []
+    for it in items:
+        key = re.sub(r"\s+", " ", (it.get("title") or "").lower()).strip()
+        if key and key not in seen:
+            seen.add(key)
+            unique.append(it)
+    # ISO timestamps sort correctly as strings; missing dates fall to the bottom.
+    unique.sort(key=lambda x: x.get("published_at") or "", reverse=True)
+    return unique
+
+
 def get_news(ticker: str, limit: int = 5) -> list[dict]:
-    """Return up to ``limit`` recent news items, trying sources in priority order."""
+    """Return up to ``limit`` of the freshest news items, trying sources in priority order.
+
+    Fetches a few extra so de-duping/sorting still leaves a full list, then trims.
+    """
+    over = max(limit * 2, limit + 4)
+
+    def _finish(items):
+        return _dedupe_and_sort(items)[:limit]
+
     if config.NEWS_API_KEY:
         try:
-            items = _from_newsapi(ticker, limit)
+            items = _from_newsapi(ticker, over)
             if items:
-                return items
+                return _finish(items)
         except Exception:  # noqa: BLE001 — fall through to the free sources.
             pass
 
     try:
-        items = _from_google_news(ticker, limit)
+        items = _from_google_news(ticker, over)
         if items:
-            return items
+            return _finish(items)
     except Exception:  # noqa: BLE001
         pass
 
     try:
-        return _from_yfinance(ticker, limit)
+        return _finish(_from_yfinance(ticker, over))
     except Exception:  # noqa: BLE001
         return []

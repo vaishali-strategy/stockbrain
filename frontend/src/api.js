@@ -46,6 +46,13 @@ export async function getQuote(ticker) {
   return res.json();
 }
 
+export async function getNews(ticker, limit = 5) {
+  const res = await fetch(`${API}/news/${encodeURIComponent(ticker)}?limit=${limit}`);
+  if (!res.ok) throw new Error("news fetch failed");
+  const data = await res.json();
+  return data.news || [];
+}
+
 export async function getChart(ticker, period) {
   const res = await fetch(`${API}/chart/${encodeURIComponent(ticker)}?period=${period}`);
   if (!res.ok) throw new Error("chart fetch failed");
@@ -92,12 +99,24 @@ export function timeAgo(iso) {
 }
 
 // NSE trades 09:15–15:30 IST, Mon–Fri. IST = UTC+5:30.
-export function marketStatus() {
+export function isMarketOpen() {
   const now = new Date();
   const utcMins = now.getUTCHours() * 60 + now.getUTCMinutes();
   const istMins = (utcMins + 330) % 1440;
   const istDay = (now.getUTCDay() + (utcMins + 330 >= 1440 ? 1 : 0)) % 7;
   const isWeekday = istDay >= 1 && istDay <= 5;
-  const open = isWeekday && istMins >= 555 && istMins <= 930; // 9:15–15:30
-  return open ? "Market open" : "Market closed";
+  return isWeekday && istMins >= 555 && istMins <= 930; // 9:15–15:30 IST
+}
+
+export function marketStatus() {
+  return isMarketOpen() ? "Market open" : "Market closed";
+}
+
+export function nowTimeIST() {
+  return new Date().toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZone: "Asia/Kolkata",
+  });
 }

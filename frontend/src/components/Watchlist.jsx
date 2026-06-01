@@ -1,39 +1,50 @@
-import { useEffect, useState } from "react";
-import { getQuote, formatRupees, formatPct } from "../api.js";
+import { useCallback, useEffect, useState } from "react";
+import { getQuote, formatRupees, formatPct, isMarketOpen, nowTimeIST } from "../api.js";
 import { useWatchlist, removeFromWatchlist } from "../watchlist.js";
+import { useDocumentVisible, useInterval } from "../hooks.js";
 import Reveal from "./Reveal.jsx";
+
+const POLL_MS = 30000;
 
 export default function Watchlist({ onOpenStock }) {
   const list = useWatchlist();
   const [quotes, setQuotes] = useState({}); // ticker -> quote
   const [loading, setLoading] = useState(true);
+  const [updatedAt, setUpdatedAt] = useState(nowTimeIST());
+  const visible = useDocumentVisible();
+  const live = isMarketOpen() && visible && list.length > 0;
 
-  // (Re)fetch quotes whenever the set of tickers changes.
   const tickers = list.map((i) => i.ticker).join(",");
-  useEffect(() => {
-    let cancelled = false;
-    if (list.length === 0) {
-      setLoading(false);
-      setQuotes({});
-      return;
-    }
-    setLoading(true);
-    Promise.all(
-      list.map((i) =>
-        getQuote(i.ticker)
-          .then((q) => [i.ticker, q])
-          .catch(() => [i.ticker, { error: true }])
-      )
-    ).then((pairs) => {
-      if (!cancelled) {
-        setQuotes(Object.fromEntries(pairs));
+
+  // Fetch all quotes. `silent` skips the loading flicker for background polls.
+  const fetchQuotes = useCallback(
+    async (silent = false) => {
+      if (list.length === 0) {
+        setQuotes({});
         setLoading(false);
+        return;
       }
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [tickers]); // eslint-disable-line react-hooks/exhaustive-deps
+      if (!silent) setLoading(true);
+      const pairs = await Promise.all(
+        list.map((i) =>
+          getQuote(i.ticker)
+            .then((q) => [i.ticker, q])
+            .catch(() => [i.ticker, { error: true }])
+        )
+      );
+      setQuotes(Object.fromEntries(pairs));
+      setUpdatedAt(nowTimeIST());
+      setLoading(false);
+    },
+    [tickers] // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
+  useEffect(() => {
+    fetchQuotes(false);
+  }, [fetchQuotes]);
+
+  // Live polling while the market is open and the tab is visible.
+  useInterval(() => fetchQuotes(true), POLL_MS, live);
 
   return (
     <div className="signals-view">
@@ -45,6 +56,15 @@ export default function Watchlist({ onOpenStock }) {
               {list.length > 0
                 ? `${list.length} stock${list.length > 1 ? "s" : ""} you're tracking`
                 : "Stocks you add will show here with live prices."}
+              {list.length > 0 && (
+                <span className="wl-live">
+                  {live ? (
+                    <> · <span className="live-dot" /> Live · {updatedAt}</>
+                  ) : (
+                    <> · market closed</>
+                  )}
+                </span>
+              )}
             </p>
           </div>
         </div>
