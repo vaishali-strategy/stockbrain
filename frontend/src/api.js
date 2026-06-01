@@ -22,6 +22,12 @@ export async function getFundamentals(ticker) {
   return res.json();
 }
 
+export async function getTechnicals(ticker) {
+  const res = await fetch(`${API}/stock/${encodeURIComponent(ticker)}/technicals`);
+  if (!res.ok) throw new Error("technicals fetch failed");
+  return res.json();
+}
+
 export async function getQuality(ticker) {
   const res = await fetch(`${API}/stock/${encodeURIComponent(ticker)}/quality`);
   if (!res.ok) throw new Error("quality fetch failed");

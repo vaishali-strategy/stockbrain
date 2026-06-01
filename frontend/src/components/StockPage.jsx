@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getStock, getFundamentals, getQuality, getNotes, getVaultStatus } from "../api.js";
+import { getStock, getFundamentals, getQuality, getTechnicals, getNotes, getVaultStatus } from "../api.js";
 import { useWatchlist, toggleWatchlist } from "../watchlist.js";
 import Reveal from "./Reveal.jsx";
 import NoteEditor from "./NoteEditor.jsx";
@@ -11,6 +11,7 @@ import FinancialsTable from "./FinancialsTable.jsx";
 import ShareholdingPattern from "./ShareholdingPattern.jsx";
 import ProfitabilityAnalysis from "./ProfitabilityAnalysis.jsx";
 import PeerComparison from "./PeerComparison.jsx";
+import TechnicalAnalysis from "./TechnicalAnalysis.jsx";
 import NewsFeed from "./NewsFeed.jsx";
 
 export default function StockPage({ ticker }) {
@@ -27,6 +28,8 @@ export default function StockPage({ ticker }) {
   // it on its own so nothing else waits on it.
   const [quality, setQuality] = useState(null);
   const [qualityLoading, setQualityLoading] = useState(true);
+
+  const [tech, setTech] = useState(null);
 
   const watchlist = useWatchlist();
   const watched = watchlist.some((i) => i.ticker === ticker);
@@ -69,6 +72,11 @@ export default function StockPage({ ticker }) {
       .then((d) => !cancelled && setQuality(d))
       .catch(() => !cancelled && setQuality(null))
       .finally(() => !cancelled && setQualityLoading(false));
+
+    setTech(null);
+    getTechnicals(ticker)
+      .then((d) => !cancelled && setTech(d))
+      .catch(() => !cancelled && setTech(null));
 
     return () => {
       cancelled = true;
@@ -114,6 +122,7 @@ export default function StockPage({ ticker }) {
         <div className="stockpage-left">
           <Reveal><StockCard ticker={ticker} quote={quote} /></Reveal>
           <Reveal delay={60}><StockChart ticker={ticker} initial={data.chart} /></Reveal>
+          {tech?.available && <Reveal><TechnicalAnalysis tech={tech} /></Reveal>}
 
           {fundLoading && !hasFund && (
             <Reveal>

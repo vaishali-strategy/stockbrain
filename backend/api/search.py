@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from ..data import fundamentals, market, news, overview, quality, search, shareholding
+from ..data import fundamentals, market, news, overview, quality, search, shareholding, technicals
 
 router = APIRouter(tags=["search"])
 
@@ -54,3 +54,11 @@ def stock_quality(ticker: str) -> dict:
     valuation) + a pre-buy checklist. Heavier (multiple statements + screener) so it's
     fetched lazily and separately from the main profile."""
     return quality.get_quality_analysis(ticker)
+
+
+@router.get("/stock/{ticker}/technicals")
+def stock_technicals(ticker: str) -> dict:
+    """Full technical-analysis snapshot: moving averages, oscillators (RSI/MACD/Stochastic/
+    ADX), Bollinger Bands, pivot/Fibonacci/support-resistance levels, volume/OBV, the latest
+    candlestick pattern, and a synthesized bull/bear rating."""
+    return technicals.get_technical_analysis(ticker)

@@ -1167,6 +1167,223 @@ body > #root::before {
   padding-top: 6px;
 }
 
+/* ---------- technical analysis ---------- */
+.tone-neutral {
+  color: var(--text-dim);
+}
+.tech-asof {
+  float: right;
+  font-size: 11px;
+  color: var(--text-faint);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.tech-rating {
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 6px;
+  border: 1px solid var(--glass-border);
+}
+.rate-buy {
+  background: linear-gradient(135deg, rgba(47, 230, 168, 0.18), rgba(47, 230, 168, 0.04));
+}
+.rate-sell {
+  background: linear-gradient(135deg, rgba(255, 107, 139, 0.18), rgba(255, 107, 139, 0.04));
+}
+.rate-neutral {
+  background: linear-gradient(135deg, rgba(255, 194, 75, 0.16), rgba(255, 194, 75, 0.03));
+}
+.tech-rating-label {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.rate-buy .tech-rating-label {
+  color: var(--pos);
+}
+.rate-sell .tech-rating-label {
+  color: var(--neg);
+}
+.rate-neutral .tech-rating-label {
+  color: var(--amber);
+}
+.tech-rating-counts {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+.tech-rating-note {
+  color: var(--text-faint);
+}
+.tech-caveat {
+  font-size: 11.5px;
+  color: var(--text-faint);
+  margin: 0 0 14px;
+}
+.tech-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 1100px) {
+  .tech-cols {
+    grid-template-columns: 1fr;
+  }
+}
+.tech-sub {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-dim);
+  margin: 6px 0 8px;
+}
+.tech-hint {
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-faint);
+  font-weight: 400;
+  margin-left: 6px;
+}
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tech-table td {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--glass-border);
+  font-size: 13px;
+}
+.tech-table tr:last-child td {
+  border-bottom: none;
+}
+.tech-val {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+.tech-sig {
+  text-align: right;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: 72px;
+}
+.tech-note {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 8px;
+}
+.tech-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+.tech-stat {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+}
+.tech-stat-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-faint);
+}
+.tech-stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin: 3px 0;
+}
+.tech-stat-sub {
+  font-size: 11px;
+  color: var(--text-faint);
+}
+.tech-52w {
+  margin-bottom: 16px;
+}
+.tech-52w-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--neg), var(--amber), var(--pos));
+  position: relative;
+  opacity: 0.4;
+}
+.tech-52w-fill {
+  position: absolute;
+  top: -3px;
+  height: 14px;
+  width: 2px;
+}
+.tech-52w-fill::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 0;
+  width: 12px;
+  height: 14px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+.tech-52w-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-top: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.tech-levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+.level-card {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+}
+.level-card-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.level-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+.level-card-foot {
+  font-size: 10.5px;
+  color: var(--text-faint);
+  margin-top: 6px;
+}
+.tech-candle {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(141, 92, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.tech-candle-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #d7ccff;
+  margin-right: 8px;
+}
+
 /* ---------- profitability analysis ---------- */
 .quality-score {
   float: right;
