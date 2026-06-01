@@ -247,6 +247,10 @@ def get_technical_analysis(ticker: str) -> dict:
     resistance = round(swing_hi, 2)
     support = round(swing_lo, 2)
 
+    # --- Suggested trade levels (price-action based) ---
+    suggested = _suggested_levels(price, pivots, swing_lo, swing_hi, w52_high, bb,
+                                  _sma(closes, 50), _sma(closes, 200), atr)
+
     # --- Candlestick pattern (latest, with one lookback for engulfing) ---
     candle = _candlestick(last, prev, closes)
 
@@ -281,6 +285,46 @@ def get_technical_analysis(ticker: str) -> dict:
                    "position_pct": pos, "support": support, "resistance": resistance,
                    "pivots": pivots, "fibonacci": fib},
         "candlestick": candle,
+        "suggested_levels": suggested,
+    }
+
+
+def _suggested_levels(price, pivots, swing_lo, swing_hi, w52_high, bb, sma50, sma200, atr):
+    """Entry / target / stop from the structure around the current price.
+
+    Entry = nearest support below price; target = nearest resistance above price; stop =
+    the next support beneath the entry (ATR-padded if the structure runs out). Purely
+    price-action; explicitly a research aid, not advice.
+    """
+    buf = atr or price * 0.02
+    bb_low = bb["lower"] if bb else None
+    bb_up = bb["upper"] if bb else None
+
+    # Use structural levels (swing, moving averages, Bollinger, 52w) — not the tight
+    # intraday pivots — so entry/target are meaningful for a swing horizon.
+    supports = sorted({round(x, 2) for x in (swing_lo, sma50, sma200, bb_low)
+                       if x is not None and x < price}, reverse=True)
+    resistances = sorted({round(x, 2) for x in (swing_hi, sma50, sma200, w52_high, bb_up)
+                          if x is not None and x > price})
+
+    entry = supports[0] if supports else round(price - 1.5 * buf, 2)
+    target = resistances[0] if resistances else round(price + 2 * buf, 2)
+
+    # Stop must sit a real distance below entry: at least ~1.5 ATR, or the next structural
+    # support if that's further down (never just the adjacent level).
+    atr_stop = round(entry - 1.5 * buf, 2)
+    next_support = next((s for s in supports if s < entry), None)
+    stop = min(atr_stop, next_support) if next_support is not None else atr_stop
+
+    rr = round((target - entry) / (entry - stop), 2) if entry > stop else None
+    return {
+        "current": round(price, 2),
+        "buy_near": entry,
+        "target": target,
+        "stop_loss": stop,
+        "risk_reward": rr,
+        "discount_to_buy_pct": round((entry / price - 1) * 100, 1),
+        "upside_to_target_pct": round((target / price - 1) * 100, 1),
     }
 
 

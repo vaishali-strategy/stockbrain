@@ -83,6 +83,18 @@ export default function ProfitabilityAnalysis({ quality }) {
           hint="< 1 can mean growth is cheaply priced" />
         <Metric label="EV / EBITDA" value={fmtNum(val.ev_ebitda)} hint="Better than P/E for capital-heavy firms" />
         <Metric label="Price / Free cash flow" value={fmtNum(val.price_to_fcf)} hint="The most honest valuation metric" />
+        {val.fair_value_peer != null && (
+          <Metric
+            label="Fair value (peer P/E)"
+            value={
+              val.fair_value_reliable
+                ? `₹${val.fair_value_peer} (${val.upside_to_fair_pct > 0 ? "+" : ""}${val.upside_to_fair_pct}%)`
+                : "n/a — peers not comparable"
+            }
+            tone={val.fair_value_reliable ? (val.upside_to_fair_pct > 0 ? "good" : "warn") : null}
+            hint="Peer-median P/E × trailing EPS. Unreliable when peers aren't true comparables (e.g. a conglomerate)."
+          />
+        )}
       </Layer>
 
       {/* Checklist */}

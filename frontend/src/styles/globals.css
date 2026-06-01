@@ -1221,6 +1221,54 @@ body > #root::before {
   color: var(--text-faint);
   margin: 0 0 14px;
 }
+.trade-levels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 14px 0 8px;
+}
+.trade-level {
+  padding: 13px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  text-align: center;
+}
+.trade-level.buy {
+  background: linear-gradient(135deg, rgba(47, 230, 168, 0.16), rgba(47, 230, 168, 0.03));
+}
+.trade-level.target {
+  background: linear-gradient(135deg, rgba(141, 92, 255, 0.16), rgba(141, 92, 255, 0.03));
+}
+.trade-level.stop {
+  background: linear-gradient(135deg, rgba(255, 107, 139, 0.16), rgba(255, 107, 139, 0.03));
+}
+.tl-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-dim);
+}
+.tl-price {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin: 4px 0 2px;
+  font-variant-numeric: tabular-nums;
+}
+.trade-level.buy .tl-price {
+  color: var(--pos);
+}
+.trade-level.target .tl-price {
+  color: #d7ccff;
+}
+.trade-level.stop .tl-price {
+  color: var(--neg);
+}
+.tl-sub {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
 .tech-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;

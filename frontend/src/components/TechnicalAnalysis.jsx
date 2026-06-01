@@ -12,6 +12,7 @@ export default function TechnicalAnalysis({ tech }) {
   if (!tech || !tech.available) return null;
   const { rating, moving_averages: mas, oscillators, bollinger, trend, volume, levels, candlestick } = tech;
   const lv = levels;
+  const sl = tech.suggested_levels;
 
   return (
     <section className="panel tech-panel">
@@ -33,6 +34,32 @@ export default function TechnicalAnalysis({ tech }) {
       <p className="tech-caveat">
         A mechanical tally of trend + momentum indicators — a starting point, not a recommendation.
       </p>
+
+      {sl && (
+        <div className="trade-levels">
+          <div className="trade-level buy">
+            <div className="tl-label">Buy near</div>
+            <div className="tl-price">₹{sl.buy_near}</div>
+            <div className="tl-sub">{sl.discount_to_buy_pct}% from ₹{sl.current}</div>
+          </div>
+          <div className="trade-level target">
+            <div className="tl-label">Target</div>
+            <div className="tl-price">₹{sl.target}</div>
+            <div className="tl-sub">+{sl.upside_to_target_pct}%</div>
+          </div>
+          <div className="trade-level stop">
+            <div className="tl-label">Stop-loss</div>
+            <div className="tl-price">₹{sl.stop_loss}</div>
+            <div className="tl-sub">risk:reward {sl.risk_reward ?? "—"}</div>
+          </div>
+        </div>
+      )}
+      {sl && (
+        <p className="tech-caveat">
+          Levels from price structure (swing support/resistance, moving averages, Bollinger,
+          ATR-based stop) — for research, <strong>not investment advice</strong>.
+        </p>
+      )}
 
       <div className="tech-cols">
         {/* Moving averages */}

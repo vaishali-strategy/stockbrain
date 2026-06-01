@@ -405,6 +405,24 @@ def get_quality_analysis(ticker: str) -> dict:
     cap = _capital_allocation(ticker, info)
     val = _valuation(info, cashflow)
     peers = screener_metrics.get_peers(ticker)
+
+    # Fundamental fair-value anchor: peer-median P/E × trailing EPS.
+    eps = _f(info.get("trailingEps"))
+    price = _f(info.get("currentPrice"))
+    med_pe = peers.get("median_pe") if peers.get("available") else None
+    if eps and eps > 0 and med_pe and price:
+        fair = round(med_pe * eps, 2)
+        upside = round((fair / price - 1) * 100, 1)
+        val["fair_value_peer"] = fair
+        val["upside_to_fair_pct"] = upside
+        # Naive peer-P/E fair value breaks when the peer set isn't truly comparable
+        # (e.g. a conglomerate priced against pure-play peers). Flag extreme gaps.
+        val["fair_value_reliable"] = abs(upside) <= 40
+    else:
+        val["fair_value_peer"] = None
+        val["upside_to_fair_pct"] = None
+        val["fair_value_reliable"] = False
+
     checklist = _build_checklist(eq, moat, cap, val, peers)
     score = sum(1 for c in checklist if c["status"] == "pass")
     narrative, narrative_ai = _narrative(ticker, info, eq, moat, cap, val, peers)
