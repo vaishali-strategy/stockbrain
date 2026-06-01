@@ -1340,6 +1340,30 @@ body > #root::before {
   margin: 12px 0 0;
 }
 
+/* ---------- peer comparison ---------- */
+.peer-verdict {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin: 0 0 14px;
+}
+.peer-table .peer-self {
+  background: rgba(141, 92, 255, 0.12);
+}
+.peer-table .peer-self td {
+  font-weight: 600;
+}
+.peer-you {
+  margin-left: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #d7ccff;
+  background: rgba(141, 92, 255, 0.2);
+  padding: 1px 7px;
+  border-radius: 999px;
+}
+
 /* ---------- watchlist ---------- */
 .watchlist-panel {
   padding: 8px 8px;

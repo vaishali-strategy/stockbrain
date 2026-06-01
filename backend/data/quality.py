@@ -181,7 +181,7 @@ def _check(label, status, detail):
     return {"label": label, "status": status, "detail": detail}
 
 
-def _build_checklist(eq, moat, cap, val) -> list[dict]:
+def _build_checklist(eq, moat, cap, val, peers) -> list[dict]:
     items = []
 
     cagr = eq["revenue_cagr"]
@@ -231,11 +231,26 @@ def _build_checklist(eq, moat, cap, val) -> list[dict]:
     ))
 
     pe = val["pe_ratio"]
-    items.append(_check(
-        "P/E reasonable (vs history & peers)",
-        "info",
-        f"P/E {pe} — compare to the stock's own history and sector peers" if pe else "P/E unavailable; judge vs peers",
-    ))
+    med_pe = peers.get("median_pe") if peers.get("available") else None
+    if pe and med_pe:
+        disc = round((pe / med_pe - 1) * 100)
+        if pe <= med_pe:
+            status, word = "pass", f"{abs(disc)}% below"
+        elif pe <= med_pe * 1.5:
+            status, word = "warn", f"{disc}% above"
+        else:
+            status, word = "warn", f"{disc}% above"
+        items.append(_check(
+            "P/E reasonable vs peers",
+            status,
+            f"P/E {pe} is {word} the peer median ({med_pe})",
+        ))
+    else:
+        items.append(_check(
+            "P/E reasonable (vs history & peers)",
+            "info",
+            f"P/E {pe} — compare to the stock's own history and sector peers" if pe else "P/E unavailable; judge vs peers",
+        ))
 
     items.append(_check(
         "Can you explain the moat?",
@@ -272,7 +287,8 @@ def get_quality_analysis(ticker: str) -> dict:
     moat = _moat(ticker)
     cap = _capital_allocation(ticker, info)
     val = _valuation(info, cashflow)
-    checklist = _build_checklist(eq, moat, cap, val)
+    peers = screener_metrics.get_peers(ticker)
+    checklist = _build_checklist(eq, moat, cap, val, peers)
     score = sum(1 for c in checklist if c["status"] == "pass")
 
     return {
@@ -281,6 +297,7 @@ def get_quality_analysis(ticker: str) -> dict:
         "moat": moat,
         "capital_allocation": cap,
         "valuation": val,
+        "peers": peers,
         "checklist": checklist,
         "checklist_score": score,
         "checklist_total": len([c for c in checklist if c["status"] != "info"]),

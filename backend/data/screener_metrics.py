@@ -126,3 +126,152 @@ def get_roce_history(ticker: str) -> dict:
     if result.get("available"):
         _write_cache(symbol, result)
     return result
+
+
+# --------------------------------------------------------------------------- peers
+def _peers_cache_path(symbol: str) -> Path:
+    return _CACHE_DIR / f"{symbol}_peers.json"
+
+
+def _read_peers_cache(symbol: str) -> dict | None:
+    p = _peers_cache_path(symbol)
+    if not p.exists():
+        return None
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+        if datetime.now(timezone.utc) - datetime.fromisoformat(data["_cached_at"]) < _CACHE_TTL:
+            data.pop("_cached_at", None)
+            return data
+    except (ValueError, OSError, KeyError):
+        return None
+    return None
+
+
+def _write_peers_cache(symbol: str, payload: dict) -> None:
+    _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    try:
+        _peers_cache_path(symbol).write_text(
+            json.dumps({**payload, "_cached_at": datetime.now(timezone.utc).isoformat()}),
+            encoding="utf-8",
+        )
+    except OSError:
+        pass
+
+
+def _col_index(headers: list[str], *needles: str) -> int | None:
+    """Find the column whose header contains any needle (case-insensitive)."""
+    for i, h in enumerate(headers):
+        hl = h.lower()
+        if any(n in hl for n in needles):
+            return i
+    return None
+
+
+def _median(values: list[float]) -> float | None:
+    vals = sorted(v for v in values if v is not None and v > 0)
+    if not vals:
+        return None
+    n = len(vals)
+    mid = n // 2
+    return round((vals[mid] if n % 2 else (vals[mid - 1] + vals[mid]) / 2), 2)
+
+
+def _scrape_peers(symbol: str) -> dict:
+    empty = {"available": False, "source": "screener.in", "peers": []}
+
+    def _fetch_page():
+        r = requests.get(f"https://www.screener.in/company/{symbol}/", headers=_HEADERS, timeout=20)
+        r.raise_for_status()
+        return r.text
+
+    page = retry_with_backoff(_fetch_page)
+    m = re.search(r'data-warehouse-id="(\d+)"', page)
+    if not m:
+        return empty
+    wid = m.group(1)
+
+    def _fetch_peers():
+        r = requests.get(
+            f"https://www.screener.in/api/company/{wid}/peers/",
+            headers={**_HEADERS, "Referer": f"https://www.screener.in/company/{symbol}/",
+                     "X-Requested-With": "XMLHttpRequest"},
+            timeout=20,
+        )
+        r.raise_for_status()
+        return r.text
+
+    soup = BeautifulSoup(retry_with_backoff(_fetch_peers), "html.parser")
+    table = soup.find("table")
+    if not table:
+        return empty
+    rows = table.find_all("tr")
+    headers = [th.get_text(strip=True) for th in rows[0].find_all(["th", "td"])]
+
+    i_name = _col_index(headers, "name")
+    i_pe = _col_index(headers, "p/e", "pe")
+    i_mcap = _col_index(headers, "mar cap", "market")
+    i_dy = _col_index(headers, "div")
+    i_roce = _col_index(headers, "roce")
+    i_cmp = _col_index(headers, "cmp")
+    if i_name is None or i_pe is None:
+        return empty
+
+    def cell(cells, idx):
+        return cells[idx] if idx is not None and idx < len(cells) else ""
+
+    peers: list[dict] = []
+    median_row = None
+    for tr in rows[1:]:
+        cells = [td.get_text(strip=True) for td in tr.find_all(["td", "th"])]
+        if len(cells) <= i_pe:
+            continue
+        name = cell(cells, i_name)
+        if name.lower().startswith("median"):
+            median_row = {"pe": _to_num(cell(cells, i_pe)), "roce": _to_num(cell(cells, i_roce)),
+                          "count": name}
+            continue
+        if not name:
+            continue
+        peers.append({
+            "name": name,
+            "pe": _to_num(cell(cells, i_pe)),
+            "cmp": _to_num(cell(cells, i_cmp)),
+            "market_cap": _to_num(cell(cells, i_mcap)),
+            "dividend_yield": _to_num(cell(cells, i_dy)),
+            "roce": _to_num(cell(cells, i_roce)),
+        })
+
+    if not peers:
+        return empty
+
+    # screener lists the subject company first.
+    self_row = peers[0]
+    others = peers[1:] if len(peers) > 1 else []
+    median_pe = (median_row or {}).get("pe") or _median([p["pe"] for p in others or peers])
+    median_roce = (median_row or {}).get("roce") or _median([p["roce"] for p in others or peers])
+
+    return {
+        "available": True,
+        "source": "screener.in",
+        "peers": peers,
+        "self_name": self_row["name"],
+        "self_pe": self_row["pe"],
+        "self_roce": self_row["roce"],
+        "median_pe": median_pe,
+        "median_roce": median_roce,
+    }
+
+
+def get_peers(ticker: str) -> dict:
+    """Return the screener.in peer-comparison table + peer-median P/E and ROCE. Never raises."""
+    symbol = _symbol(ticker)
+    cached = _read_peers_cache(symbol)
+    if cached is not None:
+        return cached
+    try:
+        result = _scrape_peers(symbol)
+    except Exception:  # noqa: BLE001
+        result = {"available": False, "source": "screener.in", "peers": []}
+    if result.get("available"):
+        _write_peers_cache(symbol, result)
+    return result

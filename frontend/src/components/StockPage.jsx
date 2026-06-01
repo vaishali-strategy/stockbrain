@@ -10,6 +10,7 @@ import QuarterlyResults from "./QuarterlyResults.jsx";
 import FinancialsTable from "./FinancialsTable.jsx";
 import ShareholdingPattern from "./ShareholdingPattern.jsx";
 import ProfitabilityAnalysis from "./ProfitabilityAnalysis.jsx";
+import PeerComparison from "./PeerComparison.jsx";
 import NewsFeed from "./NewsFeed.jsx";
 
 export default function StockPage({ ticker }) {
@@ -134,6 +135,7 @@ export default function StockPage({ ticker }) {
             </Reveal>
           )}
           {quality && <Reveal><ProfitabilityAnalysis quality={quality} /></Reveal>}
+          {quality?.peers?.available && <Reveal><PeerComparison peers={quality.peers} /></Reveal>}
           {fund?.quarterly?.available && (
             <Reveal><QuarterlyResults quarterly={fund.quarterly} /></Reveal>
           )}
