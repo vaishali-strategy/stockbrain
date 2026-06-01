@@ -40,6 +40,75 @@ export async function getSignalsStatus() {
   return res.json();
 }
 
+// --- vault / notes / chat ---
+
+export async function getVaultStatus() {
+  const res = await fetch(`${API}/vault-status`);
+  if (!res.ok) throw new Error("vault status failed");
+  return res.json();
+}
+
+export async function setVaultConfig(path) {
+  const res = await fetch(`${API}/vault/config`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ path }),
+  });
+  return res.json();
+}
+
+export async function syncVault() {
+  const res = await fetch(`${API}/sync-vault`, { method: "POST" });
+  return res.json();
+}
+
+export async function saveNote(note) {
+  const res = await fetch(`${API}/notes`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(note),
+  });
+  return res.json();
+}
+
+export async function getNotes(ticker) {
+  const res = await fetch(`${API}/notes/${encodeURIComponent(ticker)}`);
+  if (!res.ok) throw new Error("notes fetch failed");
+  const data = await res.json();
+  return data.notes || [];
+}
+
+// Stream a chat reply. Calls onToken(text) for each delta and onDone(finalObj) at the end.
+export async function streamChat(body, onToken, onDone) {
+  const res = await fetch(`${API}/chat`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const parts = buffer.split("\n\n");
+    buffer = parts.pop(); // keep the trailing partial frame
+    for (const part of parts) {
+      const line = part.trim();
+      if (!line.startsWith("data:")) continue;
+      let json;
+      try {
+        json = JSON.parse(line.slice(5).trim());
+      } catch {
+        continue;
+      }
+      if (json.done) onDone(json);
+      else if (json.token) onToken(json.token);
+    }
+  }
+}
+
 export async function getQuote(ticker) {
   const res = await fetch(`${API}/quote/${encodeURIComponent(ticker)}`);
   if (!res.ok) throw new Error("quote fetch failed");

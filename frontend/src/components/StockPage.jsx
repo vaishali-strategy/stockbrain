@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getStock, getFundamentals } from "../api.js";
+import { getStock, getFundamentals, getNotes, getVaultStatus } from "../api.js";
 import { useWatchlist, toggleWatchlist } from "../watchlist.js";
 import Reveal from "./Reveal.jsx";
+import NoteEditor from "./NoteEditor.jsx";
 import StockCard from "./StockCard.jsx";
 import StockChart from "./StockChart.jsx";
 import KeyRatios from "./KeyRatios.jsx";
@@ -22,6 +23,21 @@ export default function StockPage({ ticker }) {
 
   const watchlist = useWatchlist();
   const watched = watchlist.some((i) => i.ticker === ticker);
+
+  const [notes, setNotes] = useState([]);
+  const [vaultOn, setVaultOn] = useState(false);
+  const [editorOpen, setEditorOpen] = useState(false);
+
+  function refreshNotes() {
+    getVaultStatus()
+      .then((s) => {
+        setVaultOn(!!s.vault_configured);
+        if (s.vault_configured) getNotes(ticker).then(setNotes).catch(() => setNotes([]));
+        else setNotes([]);
+      })
+      .catch(() => setVaultOn(false));
+  }
+  useEffect(refreshNotes, [ticker]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     let cancelled = false;
@@ -140,16 +156,46 @@ export default function StockPage({ ticker }) {
           </Reveal>
 
           <Reveal delay={120}>
-            <section className="panel notes-empty">
-              <h2 className="panel-title">Your notes</h2>
-              <p className="muted">
-                Connect your Obsidian vault to save research notes on {displayTicker} and chat over
-                them. (Coming in the next build.)
-              </p>
+            <section className="panel">
+              <h2 className="panel-title">
+                Your notes
+                <button className="note-add-btn" onClick={() => setEditorOpen(true)}>✍ Write</button>
+              </h2>
+              {!vaultOn ? (
+                <p className="muted">
+                  <button className="link-btn" onClick={() => (window.location.hash = "settings")}>
+                    Connect your Obsidian vault
+                  </button>{" "}
+                  to save and chat over notes on {displayTicker}.
+                </p>
+              ) : notes.length === 0 ? (
+                <p className="muted">No notes on {displayTicker} yet — write your first one.</p>
+              ) : (
+                <ul className="note-list">
+                  {notes.map((n, i) => (
+                    <li key={i} className="note-item">
+                      <div className="note-item-head">
+                        <span className="note-file">📄 {n.filename}</span>
+                        {n.type && <span className="chip">{n.type}</span>}
+                      </div>
+                      <p className="note-snippet">{n.snippet}…</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </section>
           </Reveal>
         </aside>
       </div>
+
+      {editorOpen && (
+        <NoteEditor
+          ticker={ticker}
+          onClose={() => setEditorOpen(false)}
+          onSaved={refreshNotes}
+          onOpenSettings={() => (window.location.hash = "settings")}
+        />
+      )}
     </div>
   );
 }

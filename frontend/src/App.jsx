@@ -3,6 +3,8 @@ import SearchBar from "./components/SearchBar.jsx";
 import StockPage from "./components/StockPage.jsx";
 import SignalsDashboard from "./components/SignalsDashboard.jsx";
 import Watchlist from "./components/Watchlist.jsx";
+import ChatPanel from "./components/ChatPanel.jsx";
+import ObsidianSync from "./components/ObsidianSync.jsx";
 import { marketStatus } from "./api.js";
 import { useWatchlist } from "./watchlist.js";
 
@@ -15,6 +17,8 @@ function routeFromHash() {
   if (!h) return { view: "home", ticker: null };
   if (h.toLowerCase() === "signals") return { view: "signals", ticker: null };
   if (h.toLowerCase() === "watchlist") return { view: "watchlist", ticker: null };
+  if (h.toLowerCase() === "chat") return { view: "chat", ticker: null };
+  if (h.toLowerCase() === "settings") return { view: "settings", ticker: null };
   return { view: "stock", ticker: h };
 }
 
@@ -52,6 +56,8 @@ export default function App() {
   const openStock = (t) => go(encodeURIComponent(t));
   const openSignals = () => go("signals");
   const openWatchlist = () => go("watchlist");
+  const openChat = () => go("chat");
+  const openSettings = () => go("settings");
   const goHome = () => go("");
 
   return (
@@ -67,9 +73,15 @@ export default function App() {
           <button className={view === "signals" ? "navlink active" : "navlink"} onClick={openSignals}>
             AI Signals
           </button>
+          <button className={view === "chat" ? "navlink active" : "navlink"} onClick={openChat}>
+            Chat
+          </button>
           <button className={view === "watchlist" ? "navlink active" : "navlink"} onClick={openWatchlist}>
             Watchlist
             {watchlist.length > 0 && <span className="nav-badge">{watchlist.length}</span>}
+          </button>
+          <button className={view === "settings" ? "navlink active navlink-icon" : "navlink navlink-icon"} onClick={openSettings} title="Settings">
+            ⚙
           </button>
           <span className="market-status">{marketStatus()}</span>
         </nav>
@@ -104,6 +116,18 @@ export default function App() {
       {view === "watchlist" && (
         <main className="stock-view">
           <Watchlist onOpenStock={openStock} />
+        </main>
+      )}
+
+      {view === "chat" && (
+        <main className="stock-view">
+          <ChatPanel onOpenSettings={openSettings} />
+        </main>
+      )}
+
+      {view === "settings" && (
+        <main className="stock-view">
+          <ObsidianSync />
         </main>
       )}
     </div>
