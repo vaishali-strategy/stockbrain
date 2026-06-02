@@ -1725,6 +1725,126 @@ body > #root::before {
   opacity: 0.85;
 }
 
+/* ---------- portfolio analysis (good/bad + news to watch) ---------- */
+.pf-analysis {
+  margin-top: 18px;
+}
+.pf-an-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.pf-an-sub {
+  margin: 4px 0 0;
+}
+.pf-an-group {
+  margin-top: 18px;
+}
+.pf-an-head {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+}
+.pf-an-head.pos { color: var(--pos); }
+.pf-an-head.neg { color: var(--neg); }
+.pf-an-head.warn { color: var(--amber); }
+.pf-an-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px;
+}
+.pf-an-card {
+  text-align: left;
+  cursor: pointer;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: inherit;
+  font: inherit;
+  transition: background 0.18s, border-color 0.18s;
+}
+.pf-an-card:hover {
+  background: rgba(141, 92, 255, 0.1);
+  border-color: var(--glass-border-strong);
+}
+.pf-an-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.pf-an-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid currentColor;
+}
+.pf-an-pill.pos { color: var(--pos); }
+.pf-an-pill.neg { color: var(--neg); }
+.pf-an-pill.warn { color: var(--amber); }
+.pf-an-reason {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.35;
+}
+.pf-news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pf-news-item {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+}
+.pf-news-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pf-news-stance {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pf-news-stance.pos { color: var(--pos); }
+.pf-news-stance.neg { color: var(--neg); }
+.pf-news-why {
+  color: var(--text-dim);
+  font-size: 13px;
+}
+.pf-news-heads {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+.pf-news-head {
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 2px 0;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.pf-news-head:hover {
+  color: var(--text);
+}
+
 /* ---------- watchlist ---------- */
 .watchlist-panel {
   padding: 8px 8px;

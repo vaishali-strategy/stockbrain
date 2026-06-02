@@ -3,6 +3,7 @@ import { getQuote, formatRupees, formatLargeRupees, formatPct, isMarketOpen, now
 import { usePortfolio, addHolding, removeHolding, clearHoldings, parseHoldingsCSV } from "../portfolio.js";
 import { useDocumentVisible, useInterval } from "../hooks.js";
 import Reveal from "./Reveal.jsx";
+import PortfolioAnalysis from "./PortfolioAnalysis.jsx";
 
 const POLL_MS = 30000;
 
@@ -175,6 +176,11 @@ export default function Portfolio({ onOpenStock }) {
             </div>
           </section>
         </Reveal>
+      )}
+
+      {/* Fundamental good/bad grading + news-impact flags (on-demand, cached). */}
+      {holdings.length > 0 && (
+        <PortfolioAnalysis holdings={holdings} onOpenStock={onOpenStock} />
       )}
 
       {holdings.length === 0 && (

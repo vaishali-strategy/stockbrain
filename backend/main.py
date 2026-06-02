@@ -13,6 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .api import chat as chat_api
 from .api import market as market_api
 from .api import notes as notes_api
+from .api import portfolio as portfolio_api
 from .api import search as search_api
 from .api import signals as signals_api
 from .api import vault as vault_api
@@ -35,6 +36,7 @@ app.include_router(signals_api.router)
 app.include_router(vault_api.router)
 app.include_router(notes_api.router)
 app.include_router(chat_api.router)
+app.include_router(portfolio_api.router)
 
 
 @app.on_event("startup")
