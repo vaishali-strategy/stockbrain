@@ -1,5 +1,4 @@
 # StockBrain — Claude Code Project Prompt
-> Paste this entire file into Claude Code as your first message. It is a complete build brief.
 
 ---
 
