@@ -1,10 +1,11 @@
-# StockBrain — Claude Code Project Prompt
+# StockBrain — Build Plan (Draft Proposal)
+> A step-by-step procedure for building StockBrain, from project scaffold to a packaged desktop app.
 
 ---
 
-## Project identity
+## Project overview
 
-You are building **StockBrain** — a local-first, RAG-powered stock market research desktop application. It works in two modes that coexist seamlessly:
+**StockBrain** is a local-first, RAG-powered stock market research desktop application. It works in two modes that coexist seamlessly:
 
 1. **Search mode (no setup required)** — Any user can open the app, search any stock ticker, and instantly see live price data, key financials, recent news, and an AI-generated company overview. No Obsidian vault, no notes, no configuration needed. This is the entry point for every user.
 
@@ -14,7 +15,7 @@ The vault is **entirely optional**. The app must be fully useful without it. A u
 
 The end goal is a **publishable Electron desktop app** for macOS, Windows, and Linux.
 
-The user is an intermediate developer who is rusty. Write clear code, add concise inline comments on non-obvious lines, and explain your decisions briefly in terminal output as you work. Prefer simplicity over cleverness at every decision point.
+Code style throughout: clear and simple, with concise inline comments on non-obvious lines. Prefer simplicity over cleverness at every decision point.
 
 ---
 
@@ -972,7 +973,7 @@ Write a proper README covering:
 - **Indian stocks (NSE/BSE) are the primary and default market.** Every data fetch uses `.NS` suffix first, `.BO` as fallback. US stocks are not in scope for v1 — do not spend time on them.
 - All currency displays default to ₹ (INR). Never show $ unless the data explicitly comes in USD.
 - Price data is in INR from yfinance for `.NS`/`.BO` tickers — display as-is, no conversion needed.
-- Market hours context: NSE trading hours are 9:15 AM – 3:30 PM IST. Show "Market open" / "Market closed" status accordingly. The user's timezone is IST.
+- Market hours context: NSE trading hours are 9:15 AM – 3:30 PM IST. Show "Market open" / "Market closed" status accordingly. The target audience is in IST.
 - The bundled `nifty500_tickers.json` must be present before the app runs — include a `scripts/fetch_nifty500.py` that downloads and saves it from NSE's public data (run once during setup).
 - **Embeddings are local-only via `fastembed` (ONNX). Never add `openai` or `torch`.** Anthropic has no embeddings API; do not attempt `AnthropicEmbeddings`.
 - **Model IDs come from config, never hardcoded:** `SIGNALS_MODEL` = Haiku 4.5 (`claude-haiku-4-5-20251001`), `CHAT_MODEL`/`OVERVIEW_MODEL` = Sonnet 4.6 (`claude-sonnet-4-6`). Opus 4.8 (`claude-opus-4-8`) is reserved for a future agentic-research engine. Do not use retired snapshot IDs like `claude-sonnet-4-20250514`.
@@ -987,14 +988,4 @@ Write a proper README covering:
 
 ---
 
-## What to ask me if you get stuck
-
-If anything is ambiguous, ask before building. Specifically:
-- "Your vault path in `.env` is empty — where is your Obsidian vault?" — before first sync
-- "yfinance rate-limited for ticker X — do you want me to add a retry with backoff?"
-- "The ticker search returned no results for X — should I try alternate suffixes (.NS, .BO)?"
-
----
-
-*This prompt was generated as part of the StockBrain project planning session.*
-*Version: 2.4 | Date: 2026-05-31 | Changes: local ONNX embeddings via fastembed (dropped OpenAI); tiered models (Haiku signals / Sonnet chat+overview, Opus reserved); yfinance caching+backoff layer (data/cache.py); Chroma list-metadata flattening + delete-before-add; bundled-JSON-first search; prompt caching + API budget caps; dropped SEC EDGAR filings; SEBI + privacy disclosures; scorer unit tests; recharts line-of-closes clarification*
+*Document version: 2.4 | Date: 2026-05-31 | Changelog: local ONNX embeddings via fastembed (dropped OpenAI); tiered models (Haiku signals / Sonnet chat+overview, Opus reserved); yfinance caching+backoff layer (data/cache.py); Chroma list-metadata flattening + delete-before-add; bundled-JSON-first search; prompt caching + API budget caps; dropped SEC EDGAR filings; SEBI + privacy disclosures; scorer unit tests; recharts line-of-closes clarification*
